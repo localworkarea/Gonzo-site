@@ -281,18 +281,7 @@ body {
   background-size: contain
 }
 .preloader-main__logo {
-  z-index: 2;
-  -webkit-transform: scale(.5) translate(-50%,-50%);
-  transform: scale(.5) translate(-50%,-50%);
-  -webkit-transform-origin: 0 0;
-  transform-origin: 0 0
-}
-.loaded .preloader-main__logo {
-  transition: -webkit-transform .45s ease 0s;
-  transition: transform .45s ease 0s;
-  transition: transform .45s ease 0s,-webkit-transform .45s ease 0s;
-  -webkit-transform: scale(1) translate(-50%,-50%);
-  transform: scale(1) translate(-50%,-50%)
+  z-index: 2
 }
 .swiper {
   overflow: hidden
@@ -326,8 +315,19 @@ body {
 }
 @media (min-width:29.99875em) {
   .preloader-main__logo {
+    -webkit-transform: scale(.5) translate(-50%,-50%);
+    transform: scale(.5) translate(-50%,-50%);
     max-width: 61.25rem;
-    width: 67vw
+    width: 67vw;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0
+  }
+  .loaded .preloader-main__logo {
+    transition: -webkit-transform .65s ease 0s;
+    transition: transform .65s ease 0s;
+    transition: transform .65s ease 0s,-webkit-transform .65s ease 0s;
+    -webkit-transform: scale(1) translate(-50%,-50%);
+    transform: scale(1) translate(-50%,-50%)
   }
 }
 @media (min-width:90.06125em) {

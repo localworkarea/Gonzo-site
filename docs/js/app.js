@@ -21,13 +21,6 @@
             return isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows();
         }
     };
-    function addLoadedClass() {
-        if (!document.documentElement.classList.contains("loading")) window.addEventListener("load", function() {
-            setTimeout(function() {
-                document.documentElement.classList.add("loaded");
-            }, 0);
-        });
-    }
     let bodyLockStatus = true;
     let bodyLockToggle = (delay = 500) => {
         if (document.documentElement.classList.contains("lock")) bodyUnlock(delay); else bodyLock(delay);
@@ -3622,6 +3615,5 @@
         }
     }, 0);
     window["FLS"] = false;
-    addLoadedClass();
     menuInit();
 })();

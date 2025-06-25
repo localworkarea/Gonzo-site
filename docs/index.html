@@ -8,7 +8,7 @@
 	<link rel="preload" href="fonts/SofiaSans-Bold.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="preload" href="fonts/SofiaSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20250625185107">
+	<link rel="stylesheet" href="css/style.min.css?_v=20250625194418">
 	<link rel="shortcut icon" href="favicon.ico">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -33,14 +33,27 @@
 			<section data-fp-section class="section-1"></section>
 			<section data-fp-section class="section-2"></section>
 			<section data-fp-section class="section-4">
+				<img src="img/packs/pack-01.webp" alt="Image">
+				<img src="img/packs/pack-02.webp" alt="Image">
 			</section>
 		</main>
 	</div>
 	<div id="fls-preloader">
 		<script>
 			function preloader() {
-				const preloaderImages = document.querySelector('[data-preloader]') ? document.querySelectorAll('[data-preloader] img') : document.querySelectorAll('img');
 				const preloaderContainer = document.querySelector('#fls-preloader');
+				// Проверяем, есть ли элемент с атрибутом data-preloader
+				const hasCustomPreloader = document.querySelector('[data-preloader]');
+
+				let preloaderImages;
+
+				if (hasCustomPreloader) {
+					// Если есть кастомный контейнер, выбираем только изображения внутри него
+					preloaderImages = hasCustomPreloader.querySelectorAll('img');
+				} else {
+					// Иначе выбираем все изображения на странице
+					preloaderImages = document.querySelectorAll('img');
+				}
 				if (preloaderImages.length) {
 					const preloaderStyleTemplate = `
 				<style>
@@ -59,6 +72,7 @@
 						justify-content:center;
 						align-items: center;
 						background-color: #231F20;
+						transition: opacity 0.85s ease 0s, visibility 0.85s ease 0s;
 					}
 					.fls-preloader__body{
 						max-width: 33vw;
@@ -84,11 +98,9 @@
 						postion: relative;
 						width: 100%;
 						z-index: 3;
+						transition: transform .65s ease 0s;
 					}
-					.loaded .fls-preloader__logo {
-						transform: scale(1.3);
-						transition: transform .45s ease;
-					}
+					
 					.fls-preloader__line{
 						position: absolute;
 						z-index: 3;
@@ -110,30 +122,30 @@
 						touch-action: none;
 						overscroll-behavior: none;
 					}
-					.loading body>*:not(.fls-preloader){
-						opacity: 0;
-						visibility: hidden;
-					}
-					.loaded body>*:not(.fls-preloader){
-						transition: opacity 0.5s ease 0s;
-						opacity: 1;
-						visibility: visible;
-					}
 					.loaded .fls-preloader {
-						transition: opacity 0.45s ease 0s, visibility 0.45s ease 0s;
 						opacity: 0;
 						visibility: hidden;
+					}
+					.loaded .fls-preloader__logo {
+						
+						transform: scale(1.4);
 					}
 					@media (max-width: 30.061em) {
 						.fls-preloader__body{
 							max-width: 69vw;
 						}
 						.fls-preloader__line{
-							width: 69vw;
+							width: 50vw;
 						}
 						.fls-preloader__circle {
 							width: 200vw;
 							height: 200vw;
+						}
+						.fls-preloader__logo {
+							transform: scale(.8);
+						}
+						.loaded .fls-preloader__logo {
+							transform: scale(1);
 						}
 					}
 				</style>`;
@@ -158,7 +170,6 @@
 
 					const
 						preloader = document.querySelector('.fls-preloader'),
-						showPecentLoad = document.querySelector('.fls-preloader__counter'),
 						showLineLoad = document.querySelector('.fls-preloader__line span'),
 						htmlDocument = document.documentElement;
 
@@ -177,28 +188,38 @@
 					});
 
 					function setValueProgress(progress) {
-						showPecentLoad ? showPecentLoad.innerText = `${progress}%` : null;
 						showLineLoad ? showLineLoad.style.width = `${progress}%` : null;
 					}
-					showPecentLoad ? setValueProgress(progress) : null;
 
 					function imageLoaded() {
 						imagesLoadedCount++;
 						progress = Math.round((100 / preloaderImages.length) * imagesLoadedCount);
+
 						const intervalId = setInterval(() => {
-							counter >= progress ? clearInterval(intervalId) : setValueProgress(++counter);
-							counter >= 100 ? addLoadedClass() : null;
+							if (counter >= progress) {
+								clearInterval(intervalId);
+								return;
+							}
+							counter++;
+							setValueProgress(counter);
+
+							if (counter >= 100) {
+								setTimeout(() => {
+									addLoadedClass();
+								}, 300);
+							}
 						}, 10);
 					}
 
+
 					function addLoadedClass() {
-						htmlDocument.classList.add('loaded');
 						htmlDocument.classList.remove('lock');
 						htmlDocument.classList.remove('loading');
+						htmlDocument.classList.add('loaded');
 						setInterval(() => {
 							preloader.remove();
 							preloaderContainer.remove();
-						}, 1000);
+						}, 500);
 					}
 				} else {
 					preloaderContainer.remove();
@@ -207,7 +228,7 @@
 			preloader();
 		</script>
 	</div>
-	<script src="js/app.min.js?_v=20250625185107"></script>
+	<script src="js/app.min.js?_v=20250625194418"></script>
 </body>
 
 </html>

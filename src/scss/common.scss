@@ -86,18 +86,18 @@
 		&__logo {
       @extend %absoluteCenter;
       z-index: 2;
-      transform: scale(0.5) translate(-50%,-50%);
-      transform-origin: 0 0;
-      .loaded & {
-        transition: transform .45s ease 0s;
-        transform: scale(1) translate(-50%,-50%);
-      }
       @media (min-width:$mobileSmall){
+        transform: scale(0.5) translate(-50%,-50%);
         max-width: toRem(980);
         width: 67vw;
+        transform-origin: 0 0;
+        .loaded & {
+          transition: transform .65s ease 0s;
+          transform: scale(1) translate(-50%,-50%);
+        }
       }
       @media (max-width:$mobileSmall){
-         width: 77vw; 
+        width: 77vw; 
       }
 		}
 }
