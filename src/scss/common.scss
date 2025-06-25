@@ -61,7 +61,7 @@
   z-index: 20;
   inset: 0;
   .loaded & {
-    transition: transform 0.7s cubic-bezier(0.55, 0.085, 0, 0.99) 1.5s, opacity .65s ease 2.2s;
+    transition: transform 0.7s cubic-bezier(0.55, 0.085, 0, 0.99) 1s, opacity .65s ease 2s;
     // opacity: 0;
     // transform: translate(0,-100%);
   }

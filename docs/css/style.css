@@ -267,9 +267,9 @@ body {
   inset: 0
 }
 .loaded .preloader-main {
-  transition: opacity .65s ease 2.2s,-webkit-transform .7s cubic-bezier(.55,.085,0,.99) 1.5s;
-  transition: transform .7s cubic-bezier(.55,.085,0,.99) 1.5s,opacity .65s ease 2.2s;
-  transition: transform .7s cubic-bezier(.55,.085,0,.99) 1.5s,opacity .65s ease 2.2s,-webkit-transform .7s cubic-bezier(.55,.085,0,.99) 1.5s
+  transition: opacity .65s ease 2s,-webkit-transform .7s cubic-bezier(.55,.085,0,.99) 1s;
+  transition: transform .7s cubic-bezier(.55,.085,0,.99) 1s,opacity .65s ease 2s;
+  transition: transform .7s cubic-bezier(.55,.085,0,.99) 1s,opacity .65s ease 2s,-webkit-transform .7s cubic-bezier(.55,.085,0,.99) 1s
 }
 .preloader-main__el {
   width: 100%;
