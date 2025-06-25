@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<title>GONZO | HOME</title>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="preload" href="fonts/SofiaSans-Bold.woff2" as="font" type="font/woff2" crossorigin>
+	<link rel="preload" href="fonts/SofiaSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+	<!-- <style>body{opacity: 0;}</style> -->
+	<link rel="stylesheet" href="css/style.min.css?_v=20250625185107">
+	<link rel="shortcut icon" href="favicon.ico">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="preloader-main">
+			<span class="circle bg-green-light"></span>
+			<div class="preloader-main__el"></div>
+			<picture>
+				<source srcset="img/preloader/logo-preloader-mb.webp" media="(max-width: 30.061em)" type="image/webp">
+				<source srcset="img/preloader/logo-preloader.webp" type="image/webp">
+				<img class="preloader-main__logo ibg ibg--contain" src="img/preloader/logo-preloader.webp" width="1440" height="800" alt="image">
+			</picture>
+		</div>
+		<header class="header">
+			<div class="header__container">
+			</div>
+		</header>
+		<main data-fp class="page">
+			<section data-fp-section class="section-0"></section>
+			<section data-fp-section class="section-1"></section>
+			<section data-fp-section class="section-2"></section>
+			<section data-fp-section class="section-4">
+			</section>
+		</main>
+	</div>
+	<div id="fls-preloader">
+		<script>
+			function preloader() {
+				const preloaderImages = document.querySelector('[data-preloader]') ? document.querySelectorAll('[data-preloader] img') : document.querySelectorAll('img');
+				const preloaderContainer = document.querySelector('#fls-preloader');
+				if (preloaderImages.length) {
+					const preloaderStyleTemplate = `
+				<style>
+					* {
+						padding: 0px;
+						margin: 0px;
+						border: 0px;
+						box-sizing: border-box;
+					}
+					.fls-preloader{
+						pointer-events: none;
+						z-index: 22;
+						position: fixed;
+						inset: 0;
+						display: flex;
+						justify-content:center;
+						align-items: center;
+						background-color: #231F20;
+					}
+					.fls-preloader__body{
+						max-width: 33vw;
+						display: flex;
+						flex-direction: column;
+					}
+					.fls-preloader__circle {
+						position: absolute;
+  					top: 50%;
+  					left: 50%;
+  					transform: translate(-50%,-50%);
+						width: 90vw;
+						height: 90vw;
+						border-radius: 50%;
+						z-index: 1;
+
+						background-color: rgba(255,255,255,0.8);
+						background-color: rgba(57,53,54,0.9);
+						filter:blur(100px);
+						-webkit-filter:blur(100px);
+					}
+					.fls-preloader__logo {
+						postion: relative;
+						width: 100%;
+						z-index: 3;
+					}
+					.loaded .fls-preloader__logo {
+						transform: scale(1.3);
+						transition: transform .45s ease;
+					}
+					.fls-preloader__line{
+						position: absolute;
+						z-index: 3;
+						bottom: 10%;
+						left: 50%;
+						transform: translateX(-50%);
+						width: 33vw;
+						max-width: 30.25rem;
+						height: 2px;
+					}
+					.fls-preloader__line span{
+						display: inline-block;
+						height: 100%;
+						transition: width 0.2s ease;
+						background-color: #ffffff;
+					}
+					.lock body{
+						overflow: hidden;
+						touch-action: none;
+						overscroll-behavior: none;
+					}
+					.loading body>*:not(.fls-preloader){
+						opacity: 0;
+						visibility: hidden;
+					}
+					.loaded body>*:not(.fls-preloader){
+						transition: opacity 0.5s ease 0s;
+						opacity: 1;
+						visibility: visible;
+					}
+					.loaded .fls-preloader {
+						transition: opacity 0.45s ease 0s, visibility 0.45s ease 0s;
+						opacity: 0;
+						visibility: hidden;
+					}
+					@media (max-width: 30.061em) {
+						.fls-preloader__body{
+							max-width: 69vw;
+						}
+						.fls-preloader__line{
+							width: 69vw;
+						}
+						.fls-preloader__circle {
+							width: 200vw;
+							height: 200vw;
+						}
+					}
+				</style>`;
+
+					document.head.insertAdjacentHTML("beforeend", preloaderStyleTemplate);
+
+					const preloaderTemplate = `
+					<div class="fls-preloader">
+						<div class="fls-preloader__body">
+						<span class="fls-preloader__circle"></span>
+							<svg class="fls-preloader__logo" width="484" height="137" viewBox="0 0 484 137" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M70.9284 21.3472C64.5958 13.8486 55.9071 10.0065 44.512 10.0065C31.8468 10.0065 21.1699 14.3637 12.6652 23.0867C4.16041 31.6323 0 42.1032 0 54.3136C0 66.5241 4.16041 76.995 12.6652 85.7095C21.1699 94.2551 31.8468 98.6208 44.512 98.6208C55.9071 98.6208 64.5958 94.7871 70.9284 87.2801V95.3022C70.9284 107.335 63.3258 113.964 50.4855 113.964C40.8946 113.964 34.019 110.299 29.8586 102.97L6.70045 115.881C14.8461 130.008 29.1316 136.992 49.5833 136.992C62.7915 136.992 74.1866 133.504 83.4184 126.352C92.6413 119.377 97.3535 109.083 97.3535 95.3022V12.4469H80.1601C75.0625 12.4469 70.9284 16.4326 70.9284 21.3472ZM64.7797 68.9729C60.6193 72.6377 55.3728 74.5546 49.0403 74.5546C42.7077 74.5546 37.4612 72.6377 33.3008 68.9729C29.1404 65.3081 27.1521 60.4273 27.1521 54.3221C27.1521 48.2169 29.1404 43.3361 33.3008 39.6713C37.4612 36.0064 42.7077 34.0896 49.0403 34.0896C55.3728 34.0896 60.6193 36.0064 64.7797 39.6713C68.9401 43.3361 70.9284 48.2169 70.9284 54.3221C70.9284 60.4273 68.9401 65.3165 64.7797 68.9729Z" fill="white"/>
+								<path d="M262.044 10.0065C250.281 10.0065 241.601 13.494 236.171 20.6463C236.171 16.1202 232.361 12.4469 227.666 12.4469H209.027V99.6679H236.171V52.0421C236.171 40.1779 242.687 34.0727 252.996 34.0727C262.228 34.0727 268.736 39.6544 268.736 49.9479V99.6594H295.879V46.1058C295.879 34.7651 292.621 26.0422 286.113 19.5908C279.781 13.1393 271.644 9.99805 262.044 9.99805V10.0065Z" fill="white"/>
+								<path d="M377.66 75.247H341.845L387.163 34.782C389.554 31.6069 390.85 27.7817 390.85 23.8551V12.4469H305.645V36.8677H352.837L307.519 77.3327C305.128 80.5078 303.832 84.333 303.832 88.2596V99.6594H389.466V86.6214C389.466 80.3389 384.185 75.2385 377.66 75.2385V75.247Z" fill="white"/>
+								<path d="M470.065 23.4329C460.833 14.5411 449.438 9.99805 436.046 9.99805C422.654 9.99805 411.259 14.5326 402.027 23.4329C392.795 32.3332 388.092 43.1418 388.092 56.0531C388.092 68.9644 392.795 79.9505 402.027 88.8507C411.25 97.751 422.654 102.108 436.046 102.108C449.438 102.108 460.833 97.751 470.065 88.8507C479.297 79.9505 484 68.9644 484 56.0531C484 43.1418 479.297 32.3247 470.065 23.4329ZM450.883 70.8813C446.907 74.715 442.019 76.6403 436.046 76.6403C430.073 76.6403 425.194 74.7235 421.209 70.8813C417.223 67.0392 415.235 62.1584 415.235 56.0531C415.235 49.9479 417.223 45.0587 421.209 41.225C425.185 37.3913 430.073 35.466 436.046 35.466C442.019 35.466 446.907 37.3828 450.883 41.225C454.86 45.0587 456.857 49.9479 456.857 56.0531C456.857 62.1584 454.869 67.0392 450.883 70.8813Z" fill="white"/>
+								<path d="M189.618 24.5897C196.905 8.19095 192.044 0 192.044 0C192.044 0 184.757 0 172.609 9.36471C171.198 10.454 170.217 11.3829 169.517 12.2104C164.804 10.7665 159.777 10.0065 154.417 10.0065C149.056 10.0065 144.458 10.682 139.921 12.0078C139.229 11.2309 138.327 10.3696 137.022 9.37315C124.882 0 117.595 0 117.595 0C117.595 0 112.865 8.03051 119.811 24.0662C110.999 32.8398 106.471 43.4458 106.471 56.0531C106.471 68.6604 111.175 79.9504 120.406 88.8507C129.629 97.751 141.033 102.108 154.425 102.108C167.817 102.108 179.213 97.751 188.444 88.8507C197.676 79.9504 202.38 68.9644 202.38 56.0531C202.38 43.1418 197.983 33.1776 189.434 24.48L189.627 24.5897H189.618ZM169.254 70.8813C165.277 74.715 160.39 76.6403 154.417 76.6403C148.443 76.6403 143.565 74.7234 139.579 70.8813C135.603 67.0391 133.606 62.1583 133.606 56.0531C133.606 49.9479 135.594 45.0587 139.579 41.225C143.565 37.3913 148.443 35.466 154.417 35.466C160.39 35.466 165.277 37.3828 169.254 41.225C173.23 45.0587 175.227 49.9479 175.227 56.0531C175.227 62.1583 173.239 67.0391 169.254 70.8813Z" fill="white"/>
+							</svg>
+							<div class="fls-preloader__line"><span></span></div>
+						</div>
+					</div>`;
+					document.body.insertAdjacentHTML("beforeend", preloaderTemplate);
+
+					const
+						preloader = document.querySelector('.fls-preloader'),
+						showPecentLoad = document.querySelector('.fls-preloader__counter'),
+						showLineLoad = document.querySelector('.fls-preloader__line span'),
+						htmlDocument = document.documentElement;
+
+					let imagesLoadedCount = counter = progress = 0;
+
+					htmlDocument.classList.add('loading');
+					htmlDocument.classList.add('lock');
+
+					preloaderImages.forEach(preloaderImage => {
+						const imgClone = document.createElement('img');
+						if (imgClone) {
+							imgClone.onload = imageLoaded;
+							imgClone.onerror = imageLoaded;
+							preloaderImage.dataset.src ? imgClone.src = preloaderImage.dataset.src : imgClone.src = preloaderImage.src;
+						}
+					});
+
+					function setValueProgress(progress) {
+						showPecentLoad ? showPecentLoad.innerText = `${progress}%` : null;
+						showLineLoad ? showLineLoad.style.width = `${progress}%` : null;
+					}
+					showPecentLoad ? setValueProgress(progress) : null;
+
+					function imageLoaded() {
+						imagesLoadedCount++;
+						progress = Math.round((100 / preloaderImages.length) * imagesLoadedCount);
+						const intervalId = setInterval(() => {
+							counter >= progress ? clearInterval(intervalId) : setValueProgress(++counter);
+							counter >= 100 ? addLoadedClass() : null;
+						}, 10);
+					}
+
+					function addLoadedClass() {
+						htmlDocument.classList.add('loaded');
+						htmlDocument.classList.remove('lock');
+						htmlDocument.classList.remove('loading');
+						setInterval(() => {
+							preloader.remove();
+							preloaderContainer.remove();
+						}, 1000);
+					}
+				} else {
+					preloaderContainer.remove();
+				}
+			}
+			preloader();
+		</script>
+	</div>
+	<script src="js/app.min.js?_v=20250625185107"></script>
+</body>
+
+</html>
