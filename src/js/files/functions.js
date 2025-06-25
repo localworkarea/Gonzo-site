@@ -47,7 +47,7 @@ export function setHash(hash) {
 export let _slideUp = (target, duration = 500, showmore = 0) => {
 	if (!target.classList.contains('_slide')) {
 		target.classList.add('_slide');
-		target.style.transitionProperty = 'height, margin, padding';
+		target.style.transitionProperty = 'height, margin, padding, opacity';
 		target.style.transitionDuration = duration + 'ms';
 		target.style.height = `${target.offsetHeight}px`;
 		target.offsetHeight;
@@ -90,7 +90,7 @@ export let _slideDown = (target, duration = 500, showmore = 0) => {
 		target.style.marginTop = 0;
 		target.style.marginBottom = 0;
 		target.offsetHeight;
-		target.style.transitionProperty = "height, margin, padding";
+		target.style.transitionProperty = "height, margin, padding, opacity";
 		target.style.transitionDuration = duration + 'ms';
 		target.style.height = height + 'px';
 		target.style.removeProperty('padding-top');
@@ -422,6 +422,8 @@ export function menuInit() {
 			if (bodyLockStatus && e.target.closest('.icon-menu')) {
 				bodyLockToggle();
 				document.documentElement.classList.toggle("menu-open");
+				const menuBody = document.querySelector('.menu__body');
+				_slideToggle(menuBody, 500);
 			}
 		});
 	};

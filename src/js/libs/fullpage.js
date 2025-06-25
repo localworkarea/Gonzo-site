@@ -449,6 +449,12 @@ export class FullPage {
 			// Тач стався
 			this.clickOrTouch = true;
 
+				// для управления углом свайпа
+			this._xStart = e.changedTouches[0].pageX;
+			this._yStart = e.changedTouches[0].pageY;
+			this._swipeBlocked = false;
+
+
 			//==============================
 			if (isMobile.iOS()) {
 				if (this._eventElement.scrollHeight !== this._eventElement.clientHeight) {
@@ -471,34 +477,85 @@ export class FullPage {
 	}
 	//===============================
 	// Подія руху тач/пера/курсора
-	touchMove(e) {
-		// Отримання секції, на якій спрацьовує подію
-		const targetElement = e.target.closest(`.${this.options.activeClass}`);
-		//===============================
-		if (isMobile.iOS()) {
-			let up = e.changedTouches[0].pageY > this.lastY;
-			let down = !up;
-			this.lastY = e.changedTouches[0].pageY;
-			if (targetElement) {
-				if ((up && this.allowUp) || (down && this.allowDown)) {
-					e.stopPropagation();
-				} else if (e.cancelable) {
-					e.preventDefault();
-				}
-			}
-		}
-		//===============================
-		// Перевірка на завершення анімації та наявність НЕ ПОДІЙНОГО блоку
-		if (!this.clickOrTouch || e.target.closest(this.options.noEventSelector)) return
-		// Отримання напряму руху
-		let yCoord = this._yP - e.changedTouches[0].pageY;
-		// Чи дозволено перехід? 
-		this.checkScroll(yCoord, targetElement);
-		// Перехід
-		if (this.goScroll && Math.abs(yCoord) > 20) {
-			this.choiceOfDirection(yCoord);
-		}
-	}
+	// touchMove(e) {
+	// 	// Отримання секції, на якій спрацьовує подію
+	// 	const targetElement = e.target.closest(`.${this.options.activeClass}`);
+	// 	//===============================
+	// 	if (isMobile.iOS()) {
+	// 		let up = e.changedTouches[0].pageY > this.lastY;
+	// 		let down = !up;
+	// 		this.lastY = e.changedTouches[0].pageY;
+	// 		if (targetElement) {
+	// 			if ((up && this.allowUp) || (down && this.allowDown)) {
+	// 				e.stopPropagation();
+	// 			} else if (e.cancelable) {
+	// 				e.preventDefault();
+	// 			}
+	// 		}
+	// 	}
+	// 	//===============================
+	// 	// Перевірка на завершення анімації та наявність НЕ ПОДІЙНОГО блоку
+	// 	if (!this.clickOrTouch || e.target.closest(this.options.noEventSelector)) return
+	// 	// Отримання напряму руху
+	// 	let yCoord = this._yP - e.changedTouches[0].pageY;
+	// 	// Чи дозволено перехід? 
+	// 	this.checkScroll(yCoord, targetElement);
+	// 	// Перехід
+	// 	if (this.goScroll && Math.abs(yCoord) > 20) {
+	// 		this.choiceOfDirection(yCoord);
+	// 	}
+	// }
+touchMove(e) {
+  const targetElement = e.target.closest(`.${this.options.activeClass}`);
+
+  if (isMobile.iOS()) {
+    const currentY = e.changedTouches[0].pageY;
+    const up = currentY > this.lastY;
+    const down = !up;
+    this.lastY = currentY;
+
+    if (targetElement) {
+      if ((up && this.allowUp) || (down && this.allowDown)) {
+        e.stopPropagation();
+      } else if (e.cancelable) {
+        e.preventDefault();
+      }
+    }
+  }
+
+  if (!this.clickOrTouch || e.target.closest(this.options.noEventSelector)) return;
+
+  const currentX = e.changedTouches[0].pageX;
+  const currentY = e.changedTouches[0].pageY;
+
+  const deltaX = currentX - this._xStart;
+  const deltaY = currentY - this._yStart;
+
+  const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+  // Минимальное расстояние свайпа, чтобы не реагировать на "дрожание"
+  if (distance < 10) return;
+
+  const angle = Math.abs(Math.atan2(Math.abs(deltaY), Math.abs(deltaX)) * (180 / Math.PI));
+
+  // Блокируем свайпы под углом < 70 градусов (слишком косые или горизонтальные)
+  if (angle < 45) {
+    this._swipeBlocked = true;
+    return;
+  }
+
+  if (this._swipeBlocked) return;
+
+  const yCoord = this._yP - currentY;
+
+  this.checkScroll(yCoord, targetElement);
+
+  if (this.goScroll && Math.abs(yCoord) > 20) {
+    this.choiceOfDirection(yCoord);
+  }
+}
+
+
 	//===============================
 	// Подія відпускання від екрану тач/пера/курсора
 	touchUp(e) {

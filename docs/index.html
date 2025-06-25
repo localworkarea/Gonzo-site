@@ -8,7 +8,7 @@
 	<link rel="preload" href="fonts/SofiaSans-Bold.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="preload" href="fonts/SofiaSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20250625195603">
+	<link rel="stylesheet" href="css/style.min.css?_v=20250625235315">
 	<link rel="shortcut icon" href="favicon.ico">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -26,23 +26,62 @@
 		</div>
 		<header class="header">
 			<div class="header__container">
+				<a href="index.html" class="header__logo" aria-label="logo">
+					<img src="img/icons/logo.webp" width="133" height="50" alt="Image">
+				</a>
+				<div class="header__menu menu">
+					<button type="button" class="menu__icon icon-menu" aria-label="open menu">
+						<span class="icon-menu__item"><span></span></span>
+					</button>
+					<nav class="menu__body">
+						<ul class="menu__list">
+							<li class="menu__item"><a href="#" class="menu__link" aria-label="go to section">Асортимент</a></li>
+							<li class="menu__item"><a href="#" class="menu__link" aria-label="go to section">Переваги</a></li>
+							<li class="menu__item"><a href="#" class="menu__link" aria-label="go to section">Контакти</a></li>
+							<li class="menu__item"><a href="#" class="menu__link" aria-label="link to a language page">Eng</a></li>
+						</ul>
+					</nav>
+				</div>
 			</div>
 		</header>
 		<main data-fp class="page">
-			<section data-fp-section class="section-0">
-
+			<section data-fp-section class="sliders">
+				<div class="section-wrapper bg-purple"></div>
 			</section>
 
-			<section data-fp-section class="section-1">
-
+			<section data-fp-section class="advantages">
+				<div class="section-wrapper bg-orange">
+					<div class="advantages__container">
+						<h2 class="advantages__title title-46 mb-40-26">Переваги</h2>
+						<div class="advantages__slider swiper">
+							<ul class="advantages__list swiper-wrapper">
+								<li class="advantages__item swiper-slide">
+									<div class="advantages__block bg-purple">
+										<p>Легка<br> та хрустка<br> структура</p>
+									</div>
+								</li>
+								<li class="advantages__item swiper-slide">
+									<div class="advantages__block bg-blue">
+										<p>Наповнені<br> спеціями<br> зсередини</p>
+									</div>
+								</li>
+								<li class="advantages__item swiper-slide">
+									<div class="advantages__block bg-green-2">
+										<p>Не<br> обсмажуються<br> в олії</p>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
 			</section>
 
-			<section data-fp-section class="section-2">
-
+			<section data-fp-section class="snack">
+				<div class="section-wrapper bg-purple"></div>
 			</section>
 
-			<section data-fp-section class="section-4">
-
+			<section data-fp-section class="contacts">
+				<div class="section-wrapper bg-orange"></div>
 			</section>
 		</main>
 	</div>
@@ -214,7 +253,7 @@
 							if (counter >= 100) {
 								setTimeout(() => {
 									addLoadedClass();
-								}, 300);
+								}, 0);
 							}
 						}, 10);
 					}
@@ -236,7 +275,7 @@
 			preloader();
 		</script>
 	</div>
-	<script src="js/app.min.js?_v=20250625195603"></script>
+	<script src="js/app.min.js?_v=20250625235315"></script>
 </body>
 
 </html>

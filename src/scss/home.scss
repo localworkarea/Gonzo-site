@@ -1,3 +1,270 @@
-//====================================================================================================
+.header {
+  position: fixed;
+  z-index: 15;
+  width: 100%;
+  left: 0;
+  pointer-events: none;
+  @media (min-width:$mobileSmall){
+    top: toRem(87);
+  }
+  @media (max-width:$mobileSmall){    
+    top: toRem(30);
+  }
+  @media (max-height: toEm(480.98)) {
+    top: toRem(30);
+  }
+  @media (max-width: toEm(375.98)){
+    top: toRem(15);
+  }
+		// .header__container
+		&__container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+		}
+		// .header__logo
+		&__logo {
+      pointer-events: all;
+		}
+		// .header__menu
+		&__menu {
+      pointer-events: all;
+		}
+}
 
-//====================================================================================================
+.menu {
+  position: relative;
+  color: var(--primary);
+		// .menu__icon
+		&__icon {
+		}
+		// .menu__body
+		&__body {
+      position: absolute;
+      top: 0;
+      right: toRem(70);
+      background-color: var(--white);
+      opacity: 0;
+      .menu-open & {
+        opacity: 1;
+      }
+       @extend %shadowBox;
+      @media (min-width:$tablet){
+        border-radius: toRem(50);
+      }
+      @media (max-width:$tablet){
+        border-radius: toRem(40);
+      }
+		}
+		// .menu__list
+		&__list {
+      display: flex;
+      padding-inline: toRem(24);
+      gap: toRem(24);
+      @media (min-width:$tablet){
+        min-height: toRem(50);
+        align-items: center;
+      }
+      @media (max-width:$tablet){
+        padding-block: toRem(24);
+        flex-direction: column;
+      }
+		}
+		// .menu__item
+		&__item {
+		}
+		// .menu__link
+		&__link {
+      font-size: toRem(24);
+      font-weight: 700;
+      transition: color .3s ease;
+      @media (any-hover: hover){
+        &:hover{
+          color: var(--purple)
+        }
+      }
+		}
+}
+
+
+//Burger Icon
+.icon-menu {
+  display: grid;
+  place-items: center;
+  width: toRem(50);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: var(--white);
+  @extend %shadowBox;
+  // .icon-menu__item
+  &__item {
+    position: relative;
+    width: toRem(24);
+    height: toRem(16);
+    z-index: 5;
+    @media (any-hover: none) {
+      cursor: default;
+    }
+    span,
+    &::before,
+    &::after {
+      content: "";
+      transition: all 0.3s ease 0s;
+      right: 0;
+      position: absolute;
+      width: 100%;
+      height: toRem(2);
+      border-radius: 2px;
+      background-color: #000;
+    }
+    &::before {
+      top: 0;
+    }
+    &::after {
+      bottom: 0;
+    }
+    span {
+      top: calc(50% - toRem(1));
+      width: 70%;
+      right: unset;
+      left: 0;
+    }
+    .menu-open & {
+      span {
+        width: 0;
+      }
+      &::before,
+      &::after {
+      }
+      &::before {
+        top: calc(50% - toRem(1));
+        transform: rotate(-45deg);
+      }
+      &::after {
+        bottom: calc(50% - toRem(1));
+        transform: rotate(45deg);
+      }
+    }
+  }
+}
+
+
+// ==== SECTIONS ================================
+// ==== SECTIONS ================================
+.advantages {
+  .section-wrapper {
+    @extend %elImg;
+    @media (orientation: portrait) {    
+      background-image: url('@img/elements/elements-2-mb.png');
+       background-position: 0 toRem(140);
+    }
+    @media (max-width:$mobileSmall){
+      background-position: 0 toRem(90);
+    }
+  }
+		// .advantages__container
+		&__container {
+      @media (orientation: landscape) { 
+         height: 100%;
+       }
+      @extend %flexCenter;
+      flex-direction: column;
+      justify-content: center;
+      @media (min-width:toEm(820.98)){
+        padding-top: toRem(84);
+        padding-bottom: toRem(150);
+      }
+      @media (max-width: toEm(820.98)){
+        padding-top: toRem(160);
+      }
+      @media (max-width:$mobileSmall){
+        padding-top: toRem(120);
+      }
+      @media (max-height: toEm(480.98)) {
+        padding-top: toRem(50);
+      }
+		}
+		// .advantages__title
+		&__title {
+      text-align: center;
+		}
+		// .advantages__slider
+		&__slider {
+      max-width: toRem(1160);
+      width: 100%;
+      @media (max-width:toEm(920.98)){
+        max-width: toRem(373);
+      }
+		}
+		// .advantages__list
+		&__list {
+      // width: 100%;
+      // display: grid;
+      // gap: toRem(20);
+      // height: 100%;
+      // max-height: toRem(467);
+      // @media (min-width:toEm(820.98)){
+      //   grid-template-columns: repeat(3,1fr);
+      // }
+      // @media (max-width: toEm(820.98)){
+      //   grid-template-columns: repeat(2,1fr);
+      // }
+		}
+		// .advantages__item
+		&__item {
+      position: relative;
+      background-color: var(--white);
+      border-radius: toRem(40);
+      padding-block: toRem(70);
+      padding-inline: toRem(20);
+      @extend %shadowBox;
+      &::before,
+      &::after {
+         content:'';
+         position: absolute;
+         left: 0;
+        @extend %elImgContain;
+        width: 100%;
+        min-width: 100%;
+        aspect-ratio: 370/70;
+      }
+      &::before {
+        top: 0;
+        background-image: url('@img/advantages/header.png');
+      }
+      &::after {
+        bottom: 0;
+        background-image: url('@img/advantages/footer.png');
+      }
+		}
+		// .advantages__block
+		&__block {
+      border-radius: toRem(30);
+      text-align: center;
+      font-weight: 700;
+      line-height: 1.2;
+      width: 100%;
+      height: 100%;
+      min-height: toRem(283);
+      @extend %gridCenter;
+        @media (min-width:toEm(1100.98)){
+          font-size: toRem(36);
+        }
+        @media (max-width: toEm(1100.98)){
+          font-size: 3vw;
+        }
+        @media (max-width:$mobile){
+          font-size: 5vw;
+        }
+        @media (max-width:$mobileSmall){
+          font-size: 9vw;
+        }
+		}
+}
+
+
+// ==== SECTIONS ================================
+// ==== SECTIONS ================================
+// ==== SECTIONS ================================
+// ==== SECTIONS ================================
+// ==== SECTIONS ================================
