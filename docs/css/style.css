@@ -343,14 +343,6 @@ body {
   inset: 0;
   overflow: hidden
 }
-.loaded .preloader-main {
-  transition: opacity .65s ease 2s,-webkit-transform .7s cubic-bezier(.55,.085,0,.99) 1s;
-  transition: transform .7s cubic-bezier(.55,.085,0,.99) 1s,opacity .65s ease 2s;
-  transition: transform .7s cubic-bezier(.55,.085,0,.99) 1s,opacity .65s ease 2s,-webkit-transform .7s cubic-bezier(.55,.085,0,.99) 1s;
-  opacity: 0;
-  -webkit-transform: translate(0,-100%);
-  transform: translate(0,-100%)
-}
 .preloader-main__el {
   width: 100%;
   height: 100%;
