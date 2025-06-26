@@ -255,9 +255,12 @@ body {
   display: grid;
   place-items: center
 }
+.advantages__block:before,
 .circle,
 .preloader-main__el,
-.preloader-main__logo {
+.preloader-main__logo,
+.slide-sliders__animations,
+.sliders .section-wrapper:before {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -278,21 +281,23 @@ body {
   background-position: center;
   background-size: contain
 }
+.advantages__block:before,
 .advantages__item::after,
 .advantages__item::before,
+.sliders .section-wrapper:before,
 .sliders__button::before {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain
 }
-.advantages,
-.sliders {
+.advantages {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover
 }
 .icon-menu,
-.sliders__button {
+.sliders__button,
+.sliders__pagination.swiper-pagination .swiper-pagination-bullet {
   display: grid;
   place-items: center;
   width: 3.125rem;
@@ -456,13 +461,69 @@ body {
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg)
 }
+.sliders .section-wrapper {
+  transition: background-color .5s ease
+}
+.sliders .section-wrapper:before {
+  content: "";
+  background-image: url(../img/elements/circle-blur-big.svg);
+  aspect-ratio: 1
+}
+.sliders .section-wrapper.slide-active-01 {
+  background-color: var(--purple)
+}
+.sliders .section-wrapper.slide-active-02 {
+  background-color: var(--green)
+}
+.sliders .section-wrapper.slide-active-03 {
+  background-color: var(--blue)
+}
+.sliders .section-wrapper.slide-active-04 {
+  background-color: var(--gold)
+}
+.sliders .section-wrapper.slide-active-05 {
+  background-color: var(--brown)
+}
 .sliders__slider {
   position: relative;
   max-width: 75.25rem
 }
+.sliders__slide {
+  transition: opacity .2s ease;
+  opacity: 0
+}
+.sliders__slide.swiper-slide-active {
+  transition: opacity .4s ease;
+  opacity: 1
+}
+.sliders__pagination {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  -webkit-transform: translate(-50%,0);
+  transform: translate(-50%,0);
+  bottom: 0
+}
+.sliders__pagination.swiper-pagination {
+  display: flex;
+  align-items: center;
+  max-width: -webkit-max-content;
+  max-width: max-content;
+  gap: .375rem
+}
+.sliders__pagination.swiper-pagination .swiper-pagination-bullet {
+  cursor: pointer;
+  max-width: .5rem;
+  opacity: .2;
+  transition: opacity .3s ease
+}
+.sliders__pagination.swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  opacity: 1
+}
 .sliders__button {
   position: absolute;
-  z-index: 2
+  z-index: 2;
+  transition: opacity .3s ease
 }
 .sliders__button::before {
   content: "";
@@ -484,9 +545,38 @@ body {
   right: -.0625rem;
   background-image: url(../img/icons/arrow-next.svg)
 }
+.sliders__button.swiper-button-disabled {
+  opacity: .4
+}
+.slide-sliders {
+  position: relative
+}
 .slide-sliders__title {
   text-align: center;
-  margin-bottom: 1.375rem
+  margin-bottom: 1.375rem;
+  position: relative;
+  z-index: 2
+}
+.slide-sliders__picture {
+  position: relative;
+  z-index: 2
+}
+.slide-sliders__animations {
+  pointer-events: none
+}
+.slide-sliders__anim-img {
+  width: 115vw;
+  height: auto;
+  -webkit-transform: scale(0);
+  transform: scale(0)
+}
+.swiper-slide-active .slide-sliders__anim-img {
+  transition: opacity .2s ease .55s,-webkit-transform .65s ease .55s;
+  transition: transform .65s ease .55s,opacity .2s ease .55s;
+  transition: transform .65s ease .55s,opacity .2s ease .55s,-webkit-transform .65s ease .55s;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  opacity: 1
 }
 .advantages__container {
   height: 100%;
@@ -530,6 +620,7 @@ body {
   background-image: url(../img/advantages/footer.webp)
 }
 .advantages__block {
+  position: relative;
   border-radius: 1.875rem;
   text-align: center;
   font-weight: 700;
@@ -537,6 +628,12 @@ body {
   width: 100%;
   height: 100%;
   min-height: 17.6875rem
+}
+.advantages__block:before {
+  content: "";
+  background-image: url(../img/advantages/circle-blur.webp);
+  width: 24rem;
+  aspect-ratio: 1
 }
 .swiper {
   overflow: visible
@@ -633,6 +730,9 @@ body {
   .mb-40-26 {
     margin-bottom: 2.5rem
   }
+  .sliders .section-wrapper:before {
+    width: 187.5rem
+  }
 }
 @media (max-width:75em) {
   .fp-bullets {
@@ -685,6 +785,9 @@ body {
   .mb-40-26 {
     margin-bottom: 1.625rem
   }
+  .sliders .section-wrapper:before {
+    width: 62.5rem
+  }
 }
 @media (max-width:29.99875em) {
   .fp-bullets {
@@ -705,8 +808,14 @@ body {
     height: 100%;
     padding-top: 6.875rem
   }
-  .sliders__button {
+  .sliders__pagination {
     bottom: 0
+  }
+  .sliders__button {
+    bottom: -1.25rem
+  }
+  .slide-sliders__title {
+    padding-inline: 20px
   }
   .slide-sliders__picture {
     overflow: hidden;
@@ -747,6 +856,9 @@ body {
   .mb-40-26 {
     margin-bottom: clamp(1.625rem ,1.1866067708rem + 1.4583333333vw ,2.5rem)
   }
+  .sliders .section-wrapper:before {
+    width: clamp(62.5rem ,-.1276041667rem + 208.3333333333vw ,187.5rem)
+  }
 }
 @media (any-hover:hover) {
   .fp-bullets .fp-bullet:hover {
@@ -760,9 +872,6 @@ body {
   .advantages .section-wrapper,
   .preloader-main__el {
     background-image: url(../img/elements/elements-1-pc.webp)
-  }
-  .sliders {
-    background-image: url(../img/bgs/bg-purple-pc.webp)
   }
   .sliders .section-wrapper {
     display: flex;
@@ -780,9 +889,6 @@ body {
   .advantages .section-wrapper,
   .preloader-main__el {
     background-image: url(../img/elements/elements-1-mb.webp)
-  }
-  .sliders {
-    background-image: url(../img/bgs/bg-purple-mb.webp)
   }
   .sliders__slider {
     height: 100%

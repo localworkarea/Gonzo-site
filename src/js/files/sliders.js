@@ -8,7 +8,10 @@
 // При необхідності підключаємо додаткові модулі слайдера, вказуючи їх у {} через кому
 // Приклад: { Navigation, Autoplay }
 import Swiper from 'swiper';
-import { Navigation,EffectFade, Pagination} from 'swiper/modules';
+import {
+	Navigation,
+	Pagination
+} from 'swiper/modules';
 /*
 Основні модулі слайдера:
 Navigation, Pagination, Autoplay, 
@@ -26,8 +29,8 @@ import "../../scss/base/swiper.scss";
 
 // Ініціалізація слайдерів
 function initSliders() {
-	if (document.querySelector('.advantages__slider ')) { 
-		new Swiper('.advantages__slider ', { 
+	if (document.querySelector('.advantages__slider ')) {
+		new Swiper('.advantages__slider ', {
 			// modules: [Navigation],
 			observer: true,
 			observeParents: true,
@@ -51,7 +54,7 @@ function initSliders() {
 					slidesPerView: 3,
 					spaceBetween: 20,
 				},
-		
+
 			},
 			// Події
 			on: {
@@ -59,67 +62,50 @@ function initSliders() {
 			}
 		});
 	}
-	if (document.querySelector('.sliders__slider')) { 
-		new Swiper('.sliders__slider', { 
-			modules: [Navigation,EffectFade, Pagination],
+	if (document.querySelector('.sliders__slider')) {
+		const sliderEl = document.querySelector('.sliders__slider');
+		const sectionWrapper = sliderEl.closest('.section-wrapper');
+
+		const slider = new Swiper(sliderEl, {
+			modules: [Navigation, Pagination],
 			observer: true,
 			observeParents: true,
 			slidesPerView: 1,
 			spaceBetween: 20,
-			speed: 300,
+			speed: 400,
 
-			//touchRatio: 0,
-			//simulateTouch: false,
-			//loop: true,
-			//preloadImages: false,
-			//lazy: true,
-
-			// effect: 'fade',
-			// autoplay: {
-			// 	// delay: 3000,
-			// 	disableOnInteraction: false,
-			// },
-
-			// Пагінація
 			pagination: {
-				el: '.swiper-pagination',
+				el: sliderEl.querySelector('.swiper-pagination'),
 				clickable: true,
 			},
 
-
-			// Кнопки "вліво/вправо"
 			navigation: {
-				prevEl: '.swiper-button-prev',
-				nextEl: '.swiper-button-next',
+				prevEl: sliderEl.querySelector('.swiper-button-prev'),
+				nextEl: sliderEl.querySelector('.swiper-button-next'),
 			},
-			/*
-			// Брейкпоінти
-			breakpoints: {
-				640: {
-					slidesPerView: 1,
-					spaceBetween: 0,
-					autoHeight: true,
-				},
-				768: {
-					slidesPerView: 2,
-					spaceBetween: 20,
-				},
-				992: {
-					slidesPerView: 3,
-					spaceBetween: 20,
-				},
-				1268: {
-					slidesPerView: 4,
-					spaceBetween: 30,
-				},
-			},
-			*/
-			// Події
-			on: {
 
+			on: {
+				init(swiper) {
+					updateSectionClass(swiper.activeIndex);
+				},
+				slideChange(swiper) {
+					updateSectionClass(swiper.activeIndex);
+				}
 			}
 		});
+
+		function updateSectionClass(index) {
+			sectionWrapper.classList.forEach(className => {
+				if (/^slide-active-\d+$/.test(className)) {
+					sectionWrapper.classList.remove(className);
+				}
+			});
+
+			const newClass = `slide-active-${String(index + 1).padStart(2, '0')}`;
+			sectionWrapper.classList.add(newClass);
+		}
 	}
+
 	// if (document.querySelector('.swiper')) { // Вказуємо склас потрібного слайдера
 	// 	// Створюємо слайдер
 	// 	new Swiper('.swiper', { // Вказуємо склас потрібного слайдера
