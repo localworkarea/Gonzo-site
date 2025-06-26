@@ -8,7 +8,7 @@
 	<link rel="preload" href="fonts/SofiaSans-Bold.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="preload" href="fonts/SofiaSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20250625235315">
+	<link rel="stylesheet" href="css/style.min.css?_v=20250626115554">
 	<link rel="shortcut icon" href="favicon.ico">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -16,7 +16,7 @@
 <body>
 	<div class="wrapper">
 		<div class="preloader-main">
-			<span class="circle bg-green-light"></span>
+			<span class="circle circle--big bg-green-light"></span>
 			<div class="preloader-main__el"></div>
 			<picture>
 				<source srcset="img/preloader/logo-preloader-mb.webp" media="(max-width: 30.061em)" type="image/webp">
@@ -35,9 +35,9 @@
 					</button>
 					<nav class="menu__body">
 						<ul class="menu__list">
-							<li class="menu__item"><a href="#" class="menu__link" aria-label="go to section">Асортимент</a></li>
-							<li class="menu__item"><a href="#" class="menu__link" aria-label="go to section">Переваги</a></li>
-							<li class="menu__item"><a href="#" class="menu__link" aria-label="go to section">Контакти</a></li>
+							<li class="menu__item"><a href="#" data-goto=".sliders" class="menu__link" aria-label="go to section">Асортимент</a></li>
+							<li class="menu__item"><a href="#" data-goto=".advantages" class="menu__link" aria-label="go to section">Переваги</a></li>
+							<li class="menu__item"><a href="#" data-goto=".contacts" class="menu__link" aria-label="go to section">Контакти</a></li>
 							<li class="menu__item"><a href="#" class="menu__link" aria-label="link to a language page">Eng</a></li>
 						</ul>
 					</nav>
@@ -45,12 +45,12 @@
 			</div>
 		</header>
 		<main data-fp class="page">
-			<section data-fp-section class="sliders">
-				<div class="section-wrapper bg-purple"></div>
+			<section data-fp-section class="sliders bg-purple">
+				<div class="section-wrapper"></div>
 			</section>
 
-			<section data-fp-section class="advantages">
-				<div class="section-wrapper bg-orange">
+			<section data-fp-section class="advantages bg-orange">
+				<div class="section-wrapper">
 					<div class="advantages__container">
 						<h2 class="advantages__title title-46 mb-40-26">Переваги</h2>
 						<div class="advantages__slider swiper">
@@ -275,7 +275,7 @@
 			preloader();
 		</script>
 	</div>
-	<script src="js/app.min.js?_v=20250625235315"></script>
+	<script src="js/app.min.js?_v=20250626115554"></script>
 </body>
 
 </html>

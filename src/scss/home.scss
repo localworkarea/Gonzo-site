@@ -150,8 +150,26 @@
 
 
 // ==== SECTIONS ================================
+.sliders {
+  @extend %elImgCover;
+   @media (orientation: landscape) {
+    background-image: url('@img/bgs/bg-purple-pc.jpg');
+  }
+  @media (orientation: portrait) {    
+    background-image: url('@img/bgs/bg-purple-mb.jpg');
+  }
+  .section-wrapper {
+  }
+}
 // ==== SECTIONS ================================
 .advantages {
+  @extend %elImgCover;
+     @media (orientation: landscape) {
+      background-image: url('@img/bgs/bg-orange-pc.jpg');
+    }
+    @media (orientation: portrait) {    
+      background-image: url('@img/bgs/bg-orange-mb.jpg');
+    }
   .section-wrapper {
     @extend %elImg;
     @media (orientation: portrait) {    
@@ -159,7 +177,7 @@
        background-position: 0 toRem(140);
     }
     @media (max-width:$mobileSmall){
-      background-position: 0 toRem(90);
+      background-position: 0 toRem(90) !important;
     }
   }
 		// .advantages__container

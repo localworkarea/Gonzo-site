@@ -289,14 +289,23 @@ body {
   background-position: center;
   background-size: contain
 }
+.advantages,
+.sliders {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover
+}
 .circle {
   z-index: 0;
   display: block;
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  -webkit-filter: blur(200px);
-  filter: blur(200px)
+  filter: blur(200px);
+  -webkit-filter: blur(200px)
+}
+.circle--sm {
+  max-width: 11.5rem
 }
 .bg-green-light {
   background-color: var(--green-light)
@@ -312,6 +321,9 @@ body {
 }
 .bg-blue {
   background-color: var(--blue)
+}
+.bg-white {
+  background-color: var(--white)
 }
 .preloader-main {
   background-color: var(--green-light);
@@ -560,7 +572,7 @@ body {
   }
 }
 @media (min-width:90.06125em) {
-  .circle {
+  .circle--big {
     max-width: 58rem
   }
   .title-46 {
@@ -608,7 +620,7 @@ body {
   }
 }
 @media (max-width:30.06125em) {
-  .circle {
+  .circle--big {
     max-width: 52.75rem
   }
   .title-46 {
@@ -637,7 +649,7 @@ body {
     top: 1.875rem
   }
   .advantages .section-wrapper {
-    background-position: 0 5.625rem
+    background-position: 0 5.625rem!important
   }
   .advantages__container {
     padding-top: 7.5rem
@@ -652,7 +664,7 @@ body {
   }
 }
 @media (min-width:30.06125em)and (max-width:90.06125em) {
-  .circle {
+  .circle--big {
     max-width: clamp(52.75rem ,50.119640625rem + 8.75vw ,58rem)
   }
   .title-46 {
@@ -678,6 +690,12 @@ body {
   .preloader-main__el {
     background-image: url(../img/elements/elements-1-pc.webp)
   }
+  .sliders {
+    background-image: url(../img/bgs/bg-purple-pc.webp)
+  }
+  .advantages {
+    background-image: url(../img/bgs/bg-orange-pc.webp)
+  }
   .advantages__container {
     height: 100%
   }
@@ -686,6 +704,12 @@ body {
   .advantages .section-wrapper,
   .preloader-main__el {
     background-image: url(../img/elements/elements-1-mb.webp)
+  }
+  .sliders {
+    background-image: url(../img/bgs/bg-purple-mb.webp)
+  }
+  .advantages {
+    background-image: url(../img/bgs/bg-orange-mb.webp)
   }
   .advantages .section-wrapper {
     background-image: url(../img/elements/elements-2-mb.webp);

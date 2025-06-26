@@ -16,7 +16,7 @@
 <body>
 	<div class="wrapper">
 		<div class="preloader-main">
-			<span class="circle bg-green-light"></span>
+			<span class="circle circle--big bg-green-light"></span>
 			<div class="preloader-main__el"></div>
 			<picture>
 				<source srcset="@img/preloader/logo-preloader-mb.png" media="(max-width: 30.061em)" type="image/webp">
@@ -35,9 +35,9 @@
 					</button>
 					<nav class="menu__body">
 						<ul class="menu__list">
-							<li class="menu__item"><a href="#" class="menu__link" aria-label="go to section">Асортимент</a></li>
-							<li class="menu__item"><a href="#" class="menu__link" aria-label="go to section">Переваги</a></li>
-							<li class="menu__item"><a href="#" class="menu__link" aria-label="go to section">Контакти</a></li>
+							<li class="menu__item"><a href="#" data-goto=".sliders" class="menu__link" aria-label="go to section">Асортимент</a></li>
+							<li class="menu__item"><a href="#" data-goto=".advantages" class="menu__link" aria-label="go to section">Переваги</a></li>
+							<li class="menu__item"><a href="#" data-goto=".contacts" class="menu__link" aria-label="go to section">Контакти</a></li>
 							<li class="menu__item"><a href="#" class="menu__link" aria-label="link to a language page">Eng</a></li>
 						</ul>
 					</nav>
@@ -45,12 +45,12 @@
 			</div>
 		</header>
 		<main data-fp class="page">
-			<section data-fp-section class="sliders">
-				<div class="section-wrapper bg-purple"></div>
+			<section data-fp-section class="sliders bg-purple">
+				<div class="section-wrapper"></div>
 			</section>
 
-			<section data-fp-section class="advantages">
-				<div class="section-wrapper bg-orange">
+			<section data-fp-section class="advantages bg-orange">
+				<div class="section-wrapper">
 					<div class="advantages__container">
 						<h2 class="advantages__title title-46 mb-40-26">Переваги</h2>
 						<div class="advantages__slider swiper">

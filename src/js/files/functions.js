@@ -416,18 +416,43 @@ export function tabs() {
 	}
 }
 // Модуль роботи з меню (бургер) =======================================================================================================================================================================================================================
+// export function menuInit() {
+// 	if (document.querySelector(".icon-menu")) {
+// 		document.addEventListener("click", function (e) {
+// 			if (bodyLockStatus && e.target.closest('.icon-menu')) {
+// 				bodyLockToggle();
+// 				document.documentElement.classList.toggle("menu-open");
+// 				const menuBody = document.querySelector('.menu__body');
+// 				_slideToggle(menuBody, 500);
+// 			}
+// 		});
+// 	};
+// }
 export function menuInit() {
 	if (document.querySelector(".icon-menu")) {
 		document.addEventListener("click", function (e) {
-			if (bodyLockStatus && e.target.closest('.icon-menu')) {
+			const menuIcon = e.target.closest('.icon-menu');
+			const menuLink = e.target.closest('.menu__link');
+			const menuBody = document.querySelector('.menu__body');
+
+			// Клик по иконке-бургеру
+			if (bodyLockStatus && menuIcon) {
 				bodyLockToggle();
 				document.documentElement.classList.toggle("menu-open");
-				const menuBody = document.querySelector('.menu__body');
 				_slideToggle(menuBody, 500);
 			}
+
+			// Клик по пункту меню
+			if (document.documentElement.classList.contains("menu-open") && menuLink) {
+				// Закрываем меню
+				menuClose();
+				_slideUp(menuBody, 500);
+			}
 		});
-	};
+	}
 }
+
+
 export function menuOpen() {
 	bodyLock();
 	document.documentElement.classList.add("menu-open");
