@@ -3649,24 +3649,6 @@
         });
     }
     function initSliders() {
-        if (document.querySelector(".advantages__slider ")) new swiper_core_Swiper(".advantages__slider ", {
-            observer: true,
-            observeParents: true,
-            slidesPerView: 3,
-            spaceBetween: 20,
-            speed: 500,
-            breakpoints: {
-                320: {
-                    slidesPerView: 1.05,
-                    spaceBetween: 16
-                },
-                920: {
-                    slidesPerView: 3,
-                    spaceBetween: 20
-                }
-            },
-            on: {}
-        });
         if (document.querySelector(".sliders__slider")) {
             const sliderEl = document.querySelector(".sliders__slider");
             const sectionWrapper = sliderEl.closest(".section-wrapper");

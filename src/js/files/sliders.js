@@ -29,39 +29,39 @@ import "../../scss/base/swiper.scss";
 
 // Ініціалізація слайдерів
 function initSliders() {
-	if (document.querySelector('.advantages__slider ')) {
-		new Swiper('.advantages__slider ', {
-			// modules: [Navigation],
-			observer: true,
-			observeParents: true,
-			slidesPerView: 3,
-			spaceBetween: 20,
-			//autoHeight: true,
-			speed: 500,
-			// touchAngle: 20,
-			//touchRatio: 0,
-			//simulateTouch: false,
-			//loop: true,
-			//preloadImages: false,
-			//lazy: true,
-			// Брейкпоінти
-			breakpoints: {
-				320: {
-					slidesPerView: 1.05,
-					spaceBetween: 16,
-				},
-				920: {
-					slidesPerView: 3,
-					spaceBetween: 20,
-				},
+	// if (document.querySelector('.advantages__slider ')) {
+	// 	new Swiper('.advantages__slider ', {
+	// 		// modules: [Navigation],
+	// 		observer: true,
+	// 		observeParents: true,
+	// 		slidesPerView: 3,
+	// 		spaceBetween: 20,
+	// 		//autoHeight: true,
+	// 		speed: 500,
+	// 		// touchAngle: 20,
+	// 		//touchRatio: 0,
+	// 		//simulateTouch: false,
+	// 		//loop: true,
+	// 		//preloadImages: false,
+	// 		//lazy: true,
+	// 		// Брейкпоінти
+	// 		breakpoints: {
+	// 			320: {
+	// 				slidesPerView: 1.05,
+	// 				spaceBetween: 16,
+	// 			},
+	// 			920: {
+	// 				slidesPerView: 3,
+	// 				spaceBetween: 20,
+	// 			},
 
-			},
-			// Події
-			on: {
+	// 		},
+	// 		// Події
+	// 		on: {
 
-			}
-		});
-	}
+	// 		}
+	// 	});
+	// }
 	if (document.querySelector('.sliders__slider')) {
 		const sliderEl = document.querySelector('.sliders__slider');
 		const sectionWrapper = sliderEl.closest('.section-wrapper');
