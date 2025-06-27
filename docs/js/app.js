@@ -4130,6 +4130,66 @@
     }, 0);
     const menuBody = document.querySelector(".menu__body");
     if (menuBody) _slideUp(menuBody, 0);
+    document.addEventListener("DOMContentLoaded", () => {
+        const snackImages = document.querySelectorAll(".tap-snack__img");
+        const resultBlock = document.querySelector(".tap-snack__result");
+        const resultTexts = document.querySelectorAll(".tap-snack__results-txt");
+        const restartButton = document.querySelector(".tap-snack__btn");
+        const tapSnack = document.querySelector(".tap-snack");
+        let currentIndex = 0;
+        let intervalId = null;
+        let gameEnded = false;
+        let gameStarted = false;
+        function startCycling() {
+            intervalId = setInterval(() => {
+                snackImages.forEach(img => img.classList.remove("_active"));
+                currentIndex = (currentIndex + 1) % snackImages.length;
+                snackImages[currentIndex].classList.add("_active");
+            }, 250);
+        }
+        function stopGame() {
+            if (gameEnded) return;
+            gameEnded = true;
+            clearInterval(intervalId);
+            resultBlock.classList.remove("_not-active");
+            resultTexts.forEach(txt => txt.classList.remove("_active"));
+            if (resultTexts[currentIndex]) resultTexts[currentIndex].classList.add("_active");
+            restartButton.classList.remove("_hidden");
+        }
+        function resetGame() {
+            gameEnded = false;
+            currentIndex = 0;
+            snackImages.forEach((img, i) => {
+                img.classList.remove("_active");
+                if (i === 0) img.classList.add("_active");
+            });
+            resultTexts.forEach(txt => txt.classList.remove("_active"));
+            resultBlock.classList.add("_not-active");
+            restartButton.classList.add("_hidden");
+            tapSnack.addEventListener("touchstart", stopHandler, {
+                once: true
+            });
+            tapSnack.addEventListener("mousedown", stopHandler, {
+                once: true
+            });
+            startCycling();
+        }
+        const stopHandler = () => stopGame();
+        restartButton.addEventListener("click", resetGame);
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !gameStarted) {
+                    gameStarted = true;
+                    resetGame();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            root: null,
+            threshold: .5
+        });
+        if (tapSnack) observer.observe(tapSnack);
+    });
     window["FLS"] = false;
     isWebp();
     menuInit();

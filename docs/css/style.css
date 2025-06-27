@@ -273,7 +273,8 @@ body {
 }
 .advantages__item,
 .menu__body,
-.tap-snack__block {
+.tap-snack__block,
+.tap-snack__btn {
   box-shadow: 2px 2px 0 0 #231f20
 }
 .advantages__block p,
@@ -685,15 +686,39 @@ body {
 .tap-snack {
   position: relative
 }
+.tap-snack__btn {
+  position: absolute;
+  z-index: 10;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--primary);
+  padding: .9375rem;
+  border-radius: 1.25rem;
+  background-color: var(--white);
+  transition: opacity .45s ease 1s
+}
+.tap-snack__btn._hidden {
+  opacity: 0;
+  pointer-events: none;
+  transition-delay: 0s
+}
 .tap-snack__body {
   position: relative
 }
 .tap-snack__img {
   position: absolute;
   opacity: 0;
-  pointer-events: none
+  -webkit-transform: scale(.8);
+  transform: scale(.8);
+  transition: opacity .1s ease,-webkit-transform .2s ease;
+  transition: opacity .1s ease,transform .2s ease;
+  transition: opacity .1s ease,transform .2s ease,-webkit-transform .2s ease;
+  pointer-events: none;
+  cursor: pointer
 }
 .tap-snack__img._active {
+  -webkit-transform: scale(1);
+  transform: scale(1);
   opacity: 1;
   pointer-events: all
 }
@@ -707,7 +732,12 @@ body {
 }
 .tap-snack__result {
   position: absolute;
-  z-index: 3
+  z-index: 3;
+  transition: opacity .3s ease
+}
+.tap-snack__result._not-active {
+  opacity: 0;
+  pointer-events: none
 }
 .tap-snack__bg {
   position: absolute;
@@ -757,7 +787,7 @@ body {
   font-weight: 700;
   display: none
 }
-.tap-snack__results-txt.txt-2 {
+.tap-snack__results-txt._active {
   display: block
 }
 .swiper {
@@ -843,6 +873,10 @@ body {
   }
   .snack__subtitle {
     max-width: 80%
+  }
+  .tap-snack__btn {
+    top: -5rem;
+    left: 1.25rem
   }
 }
 @media (min-width:61.99875em) {
@@ -943,6 +977,12 @@ body {
     max-width: 21.25rem
   }
 }
+@media (max-width:51.31125em)and (max-width:29.99875em) {
+  .tap-snack__btn {
+    top: 0;
+    left: 1.25rem
+  }
+}
 @media (max-width:47.99875em) {
   .advantages__block {
     font-size: 5vw
@@ -1035,6 +1075,10 @@ body {
   .tap-snack {
     max-width: 80%;
     margin-inline: auto
+  }
+  .tap-snack__btn {
+    top: -1.25rem;
+    left: 0
   }
   .tap-snack__block {
     min-width: 18.75rem;

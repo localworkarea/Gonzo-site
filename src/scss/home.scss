@@ -712,6 +712,7 @@
 }
 
 .tap-snack {
+ 
   position: relative;
   @media (max-width:$mobileSmall){
      max-width: 80%;
@@ -720,6 +721,36 @@
    @media (max-height:toEm(480.98)){
       scale: 0.7;
    }
+		// .tap-snack__btn
+		&__btn {
+      position: absolute;
+      z-index: 10;
+      font-size: toRem(18);
+      font-weight: 700;
+      color: var(--primary);
+      padding: toRem(15);
+      border-radius: toRem(20);
+      background-color: var(--white);
+      @extend %shadowBox;
+      transition: opacity .45s ease 1s;
+      &._hidden {
+        opacity: 0;
+        pointer-events: none;
+        transition-delay: 0s;
+      }
+      @media (min-width:toEm(820.98)){
+        top: toRem(-80);
+        left: toRem(20);
+      }
+      @media (max-width: toEm(820.98)) and (max-width:$mobileSmall) {
+        top: toRem(0);
+        left: toRem(20);
+      }
+      @media (max-width:$mobileSmall){
+         top: toRem(-20);
+         left: 0; 
+      }
+		}
   // .tap-snack__body
   &__body {
     position: relative;
@@ -730,8 +761,12 @@
   &__img {
     position: absolute;
     opacity: 0;
+    transform: scale(0.8);
+    transition: opacity .1s ease, transform .2s ease;
     pointer-events: none;
+    cursor: pointer;
     &._active {
+      transform: scale(1);
       opacity: 1;
       pointer-events: all;
     }
@@ -754,6 +789,11 @@
     position: absolute;
     z-index: 3;
     @extend %absoluteCenter;
+    transition: opacity .3s ease;
+    &._not-active {
+      opacity: 0;
+      pointer-events: none;
+    }
   }
   // .tap-snack__bg
   &__bg {
@@ -820,12 +860,12 @@
     font-weight: 700;
     display: none;
     &._active {
+      display: block;
     }
     &.txt-1 {
     }
     
     &.txt-2 {
-      display: block;
       
     }
     
