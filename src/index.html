@@ -263,7 +263,7 @@
 									</div>
 									<div class="form__item item-select">
 										<select class="form__select" name="form[select]">
-											<button><selectedcontent></selectedcontent></button>
+											<!-- <button><selectedcontent></selectedcontent></button> -->
 											<option value="">Ваш регіон</option>
 											<option value="Вінницька"><span class="option">Вінницька область</span></option>
 											<option value="Волинська">Волинська область</option>
@@ -293,8 +293,15 @@
 											<option value="Чернігівська">Чернігівська область</option>
 										</select>
 									</div>
-									<div class="form__item">
-										<input type="file" name="form[email]" class="input">
+									<div class="form__item file-input">
+										<label class="file-input__label">
+											<input autocomplete="off" type="file" name="form[]" class="input-file input" />
+											<div class="file-input__txts">
+												<span class="file-input__txt">Прикріпити файл</span>
+												<span class="input-file-att"></span>
+												<button type="button" class="file-input__remove" aria-label="Видалити файл"></button>
+											</div>
+										</label>
 									</div>
 									<button type="submit" class="form__button">Надіслати</button>
 								</div>

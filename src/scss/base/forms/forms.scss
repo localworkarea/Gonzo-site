@@ -44,6 +44,7 @@ textarea {
 		font-size: toRem(18);
 		margin-inline: auto;
 		max-width: toRem(730);
+		width: 100%;
     box-shadow: 5px 5px 0 0 #231f20;
     background-color: var(--white);
     border-radius: toRem(40);
@@ -114,15 +115,18 @@ textarea {
 			height: 100%;
 			outline: none;
 			
+			color: #000;
 			&::picker(select) {
-				appearance: base-select;
+				// appearance: base-select;
 			}
 			button {
+				color: #000;
 			}
 			option {
+				color: #000;
 				padding-block: 1rem;
 				&::checkmark {
-					display: none;
+					// display: none;
 				}
 				&:checked {
 					background-color: var(--gray);
@@ -177,6 +181,85 @@ textarea {
 }
 
 
+
+.file-input {
+	color: var(--primary);
+	.input-file {
+		display: none;
+	}
+		// .file-input__label
+		&__label {
+			width: 100%;
+			height: 100%;
+			cursor: pointer;
+			position: relative;
+		}
+		// .file-input__txts
+		&__txts {
+			width: 100%;
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: toRem(10);
+		
+			
+			&::after {
+				content:'';
+				flex: 0 0 toRem(10);
+				background-image: url("@img/icons/clip.svg");
+				background-repeat: no-repeat;
+				background-size:contain;
+				background-position: center;
+				width: toRem(10);
+				height: toRem(18);
+			}
+			.input-file-att {
+				 display: inline-block;
+				 white-space: nowrap;
+				 overflow: hidden;
+				 text-overflow: ellipsis;
+				 vertical-align: bottom;
+				//  @media (min-width:$mobileSmall){
+				// 	max-width: 180px; 
+				// }
+				@include adaptiveValue("max-width", 286, 190,3,480.98,320);
+			}
+		}
+		// .file-input__txt
+		&__txt {
+			._file-attached & {
+				display: none;
+			}
+		}
+		// .file-input__remove
+		&__remove {
+		  display: none;
+			position: absolute;
+			width: toRem(23);
+			height: toRem(23);
+			border-radius: 50%;
+			background-color: rgba(0, 0, 0, 0.1);
+			place-items: center;
+			transition: background-color .3s ease;
+			
+			background-image: url('@img/icons/cross.svg');
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: toRem(15);
+			@media (any-hover: hover){
+				&:hover{
+					background-color: rgba(0, 0, 0, 0.5);
+				}
+			}
+			top: 0%;
+			right: 0%;
+			transform: translate(110%,-20%);
+			._file-attached & {
+				display: grid;
+			}
+		}
+}
 
 // <BUTTONS>
 // Сніппет (HTML): btn

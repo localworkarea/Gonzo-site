@@ -223,3 +223,33 @@ function resetGame() {
     observer.observe(tapSnack);
   }
 });
+
+
+// File choose from device (Form) ===============================
+	const fileInputs = document.querySelectorAll(".input-file");
+
+  if (fileInputs) {
+    fileInputs.forEach(input => {
+      const label = input.closest(".file-input__label");
+      const labelText = label.querySelector(".input-file-att");
+      const removeBtn = label.querySelector(".file-input__remove");
+    
+      input.addEventListener("change", () => {
+        if (input.files.length > 0) {
+          const file = input.files[0];
+          labelText.textContent = file.name;
+          label.classList.add("_file-attached");
+        } else {
+          labelText.textContent = "";
+          label.classList.remove("_file-attached");
+        }
+      });
+    
+      removeBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        input.value = ""; // сбрасываем выбранный файл
+        labelText.textContent = "";
+        label.classList.remove("_file-attached");
+      });
+    });
+  }

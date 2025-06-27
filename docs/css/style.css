@@ -193,6 +193,7 @@ textarea {
   font-size: 1.125rem;
   margin-inline: auto;
   max-width: 45.625rem;
+  width: 100%;
   box-shadow: 5px 5px 0 0 #231f20;
   background-color: var(--white);
   border-radius: 2.5rem
@@ -234,17 +235,15 @@ textarea {
   display: block;
   width: 100%;
   height: 100%;
-  outline: 0
+  outline: 0;
+  color: #000
 }
-.form__select::picker(select) {
-  -webkit-appearance: base-select;
-  appearance: base-select
+.form__select button {
+  color: #000
 }
 .form__select option {
+  color: #000;
   padding-block: 1rem
-}
-.form__select option::checkmark {
-  display: none
 }
 .form__select option:checked {
   background-color: var(--gray)
@@ -280,6 +279,67 @@ textarea {
 ._form-sent .form__msg {
   opacity: 1;
   pointer-events: all
+}
+.file-input {
+  color: var(--primary)
+}
+.file-input .input-file {
+  display: none
+}
+.file-input__label {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  position: relative
+}
+.file-input__txts {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .625rem
+}
+.file-input__txts::after {
+  content: "";
+  flex: 0 0 .625rem;
+  background-image: url(../img/icons/clip.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: .625rem;
+  height: 1.125rem
+}
+.file-input__txts .input-file-att {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: bottom
+}
+._file-attached .file-input__txt {
+  display: none
+}
+.file-input__remove {
+  display: none;
+  position: absolute;
+  width: 1.4375rem;
+  height: 1.4375rem;
+  border-radius: 50%;
+  background-color: rgba(0,0,0,.1);
+  place-items: center;
+  transition: background-color .3s ease;
+  background-image: url(../img/icons/cross.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: .9375rem;
+  top: 0;
+  right: 0;
+  -webkit-transform: translate(110%,-20%);
+  transform: translate(110%,-20%)
+}
+._file-attached .file-input__remove {
+  display: grid
 }
 .fp-init body {
   overflow: hidden;
@@ -1243,6 +1303,11 @@ body {
     right: 1.25rem
   }
 }
+@media (max-width:20em) {
+  .file-input__txts .input-file-att {
+    max-width: 11.875rem
+  }
+}
 @media (max-width:68.81125em) {
   .advantages__block {
     font-size: 3vw
@@ -1520,6 +1585,11 @@ body {
     width: clamp(62.5rem ,31.1861979167rem + 104.1666666667vw ,125rem)
   }
 }
+@media (min-width:20em)and (max-width:30.06125em) {
+  .file-input__txts .input-file-att {
+    max-width: clamp(11.875rem ,-.0519474469rem + 59.6347372344vw ,17.875rem)
+  }
+}
 @media (max-width:51.31125em)and (min-width:29.99875em) {
   .advantages__content {
     display: grid;
@@ -1539,6 +1609,9 @@ body {
 @media (any-hover:hover) {
   .form__button:hover {
     opacity: .8
+  }
+  .file-input__remove:hover {
+    background-color: rgba(0,0,0,.5)
   }
   .fp-bullets .fp-bullet:hover {
     opacity: 1
