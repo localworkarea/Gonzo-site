@@ -101,14 +101,12 @@ flsFunctions.menuInit();
 import * as flsForms from "./files/forms/forms.js";
 
 /* Робота з полями форми */
-/*
 flsForms.formFieldsInit({
-	viewPass: false,
-	autoHeight: false
+	// viewPass: false,
+	// autoHeight: false
 });
-*/
 /* Надсилання форми */
-// flsForms.formSubmit();
+flsForms.formSubmit();
 
 /* Модуль форми "кількість" */
 // flsForms.formQuantity();

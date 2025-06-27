@@ -1,6 +1,6 @@
 (() => {
     "use strict";
-    const modules_flsModules = {};
+    const flsModules = {};
     function isWebp() {
         function testWebP(callback) {
             let webP = new Image;
@@ -149,14 +149,225 @@
                 _slideToggle(menuBody, 500);
             }
             if (document.documentElement.classList.contains("menu-open") && menuLink) {
-                functions_menuClose();
+                menuClose();
                 _slideUp(menuBody, 500);
             }
         });
     }
-    function functions_menuClose() {
+    function menuClose() {
         bodyUnlock();
         document.documentElement.classList.remove("menu-open");
+    }
+    function FLS(message) {
+        setTimeout(() => {
+            if (window.FLS) console.log(message);
+        }, 0);
+    }
+    let gotoBlock = (targetBlock, noHeader = false, speed = 500, offsetTop = 0) => {
+        const targetBlockElement = document.querySelector(targetBlock);
+        if (targetBlockElement) {
+            let headerItem = "";
+            let headerItemHeight = 0;
+            if (noHeader) {
+                headerItem = "header.header";
+                const headerElement = document.querySelector(headerItem);
+                if (!headerElement.classList.contains("_header-scroll")) {
+                    headerElement.style.cssText = `transition-duration: 0s;`;
+                    headerElement.classList.add("_header-scroll");
+                    headerItemHeight = headerElement.offsetHeight;
+                    headerElement.classList.remove("_header-scroll");
+                    setTimeout(() => {
+                        headerElement.style.cssText = ``;
+                    }, 0);
+                } else headerItemHeight = headerElement.offsetHeight;
+            }
+            let options = {
+                speedAsDuration: true,
+                speed,
+                header: headerItem,
+                offset: offsetTop,
+                easing: "easeOutQuad"
+            };
+            document.documentElement.classList.contains("menu-open") ? menuClose() : null;
+            if (typeof SmoothScroll !== "undefined") (new SmoothScroll).animateScroll(targetBlockElement, "", options); else {
+                let targetBlockElementPosition = targetBlockElement.getBoundingClientRect().top + scrollY;
+                targetBlockElementPosition = headerItemHeight ? targetBlockElementPosition - headerItemHeight : targetBlockElementPosition;
+                targetBlockElementPosition = offsetTop ? targetBlockElementPosition - offsetTop : targetBlockElementPosition;
+                window.scrollTo({
+                    top: targetBlockElementPosition,
+                    behavior: "smooth"
+                });
+            }
+            FLS(`[gotoBlock]: Юхуу...їдемо до ${targetBlock}`);
+        } else FLS(`[gotoBlock]: Йой... Такого блоку немає на сторінці: ${targetBlock}`);
+    };
+    function formFieldsInit(options = {
+        viewPass: false,
+        autoHeight: false
+    }) {
+        document.body.addEventListener("focusin", function(e) {
+            const targetElement = e.target;
+            if (targetElement.tagName === "INPUT" || targetElement.tagName === "TEXTAREA") {
+                if (!targetElement.hasAttribute("data-no-focus-classes")) {
+                    targetElement.classList.add("_form-focus");
+                    targetElement.parentElement.classList.add("_form-focus");
+                }
+                formValidate.removeError(targetElement);
+                targetElement.hasAttribute("data-validate") ? formValidate.removeError(targetElement) : null;
+            }
+        });
+        document.body.addEventListener("focusout", function(e) {
+            const targetElement = e.target;
+            if (targetElement.tagName === "INPUT" || targetElement.tagName === "TEXTAREA") {
+                if (!targetElement.hasAttribute("data-no-focus-classes")) {
+                    targetElement.classList.remove("_form-focus");
+                    targetElement.parentElement.classList.remove("_form-focus");
+                }
+                targetElement.hasAttribute("data-validate") ? formValidate.validateInput(targetElement) : null;
+            }
+        });
+    }
+    let formValidate = {
+        getErrors(form) {
+            let error = 0;
+            let formRequiredItems = form.querySelectorAll("*[data-required]");
+            if (formRequiredItems.length) formRequiredItems.forEach(formRequiredItem => {
+                if ((formRequiredItem.offsetParent !== null || formRequiredItem.tagName === "SELECT") && !formRequiredItem.disabled) error += this.validateInput(formRequiredItem);
+            });
+            return error;
+        },
+        validateInput(formRequiredItem) {
+            let error = 0;
+            if (formRequiredItem.dataset.required === "email") {
+                formRequiredItem.value = formRequiredItem.value.replace(" ", "");
+                if (this.emailTest(formRequiredItem)) {
+                    this.addError(formRequiredItem);
+                    this.removeSuccess(formRequiredItem);
+                    error++;
+                } else {
+                    this.removeError(formRequiredItem);
+                    this.addSuccess(formRequiredItem);
+                }
+            } else if (formRequiredItem.type === "checkbox" && !formRequiredItem.checked) {
+                this.addError(formRequiredItem);
+                this.removeSuccess(formRequiredItem);
+                error++;
+            } else if (!formRequiredItem.value.trim()) {
+                this.addError(formRequiredItem);
+                this.removeSuccess(formRequiredItem);
+                error++;
+            } else {
+                this.removeError(formRequiredItem);
+                this.addSuccess(formRequiredItem);
+            }
+            return error;
+        },
+        addError(formRequiredItem) {
+            formRequiredItem.classList.add("_form-error");
+            formRequiredItem.parentElement.classList.add("_form-error");
+            let inputError = formRequiredItem.parentElement.querySelector(".form__error");
+            if (inputError) formRequiredItem.parentElement.removeChild(inputError);
+            if (formRequiredItem.dataset.error) formRequiredItem.parentElement.insertAdjacentHTML("beforeend", `<div class="form__error">${formRequiredItem.dataset.error}</div>`);
+        },
+        removeError(formRequiredItem) {
+            formRequiredItem.classList.remove("_form-error");
+            formRequiredItem.parentElement.classList.remove("_form-error");
+            if (formRequiredItem.parentElement.querySelector(".form__error")) formRequiredItem.parentElement.removeChild(formRequiredItem.parentElement.querySelector(".form__error"));
+        },
+        addSuccess(formRequiredItem) {
+            formRequiredItem.classList.add("_form-success");
+            formRequiredItem.parentElement.classList.add("_form-success");
+        },
+        removeSuccess(formRequiredItem) {
+            formRequiredItem.classList.remove("_form-success");
+            formRequiredItem.parentElement.classList.remove("_form-success");
+        },
+        formClean(form) {
+            form.reset();
+            setTimeout(() => {
+                let inputs = form.querySelectorAll("input,textarea");
+                for (let index = 0; index < inputs.length; index++) {
+                    const el = inputs[index];
+                    el.parentElement.classList.remove("_form-focus");
+                    el.classList.remove("_form-focus");
+                    formValidate.removeError(el);
+                }
+                let checkboxes = form.querySelectorAll(".checkbox__input");
+                if (checkboxes.length > 0) for (let index = 0; index < checkboxes.length; index++) {
+                    const checkbox = checkboxes[index];
+                    checkbox.checked = false;
+                }
+                if (flsModules.select) {
+                    let selects = form.querySelectorAll("div.select");
+                    if (selects.length) for (let index = 0; index < selects.length; index++) {
+                        const select = selects[index].querySelector("select");
+                        flsModules.select.selectBuild(select);
+                    }
+                }
+            }, 0);
+        },
+        emailTest(formRequiredItem) {
+            return !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(formRequiredItem.value);
+        }
+    };
+    function formSubmit() {
+        const forms = document.forms;
+        if (forms.length) for (const form of forms) {
+            form.addEventListener("submit", function(e) {
+                const form = e.target;
+                formSubmitAction(form, e);
+            });
+            form.addEventListener("reset", function(e) {
+                const form = e.target;
+                formValidate.formClean(form);
+            });
+        }
+        async function formSubmitAction(form, e) {
+            const error = !form.hasAttribute("data-no-validate") ? formValidate.getErrors(form) : 0;
+            if (error === 0) {
+                const ajax = form.hasAttribute("data-ajax");
+                if (ajax) {
+                    e.preventDefault();
+                    const formAction = form.getAttribute("action") ? form.getAttribute("action").trim() : "#";
+                    const formMethod = form.getAttribute("method") ? form.getAttribute("method").trim() : "GET";
+                    const formData = new FormData(form);
+                    form.classList.add("_sending");
+                    const response = await fetch(formAction, {
+                        method: formMethod,
+                        body: formData
+                    });
+                    if (response.ok) {
+                        let responseResult = await response.json();
+                        form.classList.remove("_sending");
+                        formSent(form, responseResult);
+                    } else {
+                        alert("Помилка");
+                        form.classList.remove("_sending");
+                    }
+                } else if (form.hasAttribute("data-dev")) {
+                    e.preventDefault();
+                    formSent(form);
+                }
+            } else {
+                e.preventDefault();
+                if (form.querySelector("._form-error") && form.hasAttribute("data-goto-error")) {
+                    const formGoToErrorClass = form.dataset.gotoError ? form.dataset.gotoError : "._form-error";
+                    gotoBlock(formGoToErrorClass, true, 1e3);
+                }
+            }
+        }
+        function formSent(form, responseResult = ``) {
+            document.dispatchEvent(new CustomEvent("formSent", {
+                detail: {
+                    form
+                }
+            }));
+            document.documentElement.classList.add("_form-sent");
+            setTimeout(() => {
+                document.documentElement.classList.remove("_form-sent");
+            }, 6e3);
+            formValidate.formClean(form);
+        }
     }
     function ssr_window_esm_isObject(obj) {
         return obj !== null && typeof obj === "object" && "constructor" in obj && obj.constructor === Object;
@@ -2740,7 +2951,7 @@
         classes
     };
     const extendedDefaults = {};
-    class swiper_core_Swiper {
+    class Swiper {
         constructor() {
             let el;
             let params;
@@ -2756,7 +2967,7 @@
                     const newParams = utils_extend({}, params, {
                         el: containerEl
                     });
-                    swipers.push(new swiper_core_Swiper(newParams));
+                    swipers.push(new Swiper(newParams));
                 });
                 return swipers;
             }
@@ -3128,25 +3339,25 @@
             return defaults;
         }
         static installModule(mod) {
-            if (!swiper_core_Swiper.prototype.__modules__) swiper_core_Swiper.prototype.__modules__ = [];
-            const modules = swiper_core_Swiper.prototype.__modules__;
+            if (!Swiper.prototype.__modules__) Swiper.prototype.__modules__ = [];
+            const modules = Swiper.prototype.__modules__;
             if (typeof mod === "function" && modules.indexOf(mod) < 0) modules.push(mod);
         }
         static use(module) {
             if (Array.isArray(module)) {
-                module.forEach(m => swiper_core_Swiper.installModule(m));
-                return swiper_core_Swiper;
+                module.forEach(m => Swiper.installModule(m));
+                return Swiper;
             }
-            swiper_core_Swiper.installModule(module);
-            return swiper_core_Swiper;
+            Swiper.installModule(module);
+            return Swiper;
         }
     }
     Object.keys(prototypes).forEach(prototypeGroup => {
         Object.keys(prototypes[prototypeGroup]).forEach(protoMethod => {
-            swiper_core_Swiper.prototype[protoMethod] = prototypes[prototypeGroup][protoMethod];
+            Swiper.prototype[protoMethod] = prototypes[prototypeGroup][protoMethod];
         });
     });
-    swiper_core_Swiper.use([ Resize, Observer ]);
+    Swiper.use([ Resize, Observer ]);
     function create_element_if_not_defined_createElementIfNotDefined(swiper, originalParams, params, checkProps) {
         if (swiper.params.createElements) Object.keys(checkProps).forEach(key => {
             if (!params[key] && params.auto === true) {
@@ -3652,7 +3863,7 @@
         if (document.querySelector(".sliders__slider")) {
             const sliderEl = document.querySelector(".sliders__slider");
             const sectionWrapper = sliderEl.closest(".section-wrapper");
-            new swiper_core_Swiper(sliderEl, {
+            new Swiper(sliderEl, {
                 modules: [ Navigation, Pagination ],
                 observer: true,
                 observeParents: true,
@@ -4075,7 +4286,7 @@
             }
         }
     }
-    if (document.querySelector("[data-fp]")) modules_flsModules.fullpage = new FullPage(document.querySelector("[data-fp]"), "");
+    if (document.querySelector("[data-fp]")) flsModules.fullpage = new FullPage(document.querySelector("[data-fp]"), "");
     let addWindowScrollEvent = false;
     function pageNavigation() {
         document.addEventListener("click", pageNavigationAction);
@@ -4089,12 +4300,12 @@
                     gotoLink.hasAttribute("data-goto-header");
                     gotoLink.dataset.gotoSpeed && gotoLink.dataset.gotoSpeed;
                     gotoLink.dataset.gotoTop && parseInt(gotoLink.dataset.gotoTop);
-                    if (modules_flsModules.fullpage) {
+                    if (flsModules.fullpage) {
                         const fullpageSection = document.querySelector(`${gotoLinkSelector}`).closest("[data-fp-section]");
                         const fullpageSectionId = fullpageSection ? +fullpageSection.dataset.fpId : null;
                         if (fullpageSectionId !== null) {
-                            modules_flsModules.fullpage.switchingSection(fullpageSectionId);
-                            document.documentElement.classList.contains("menu-open") ? functions_menuClose() : null;
+                            flsModules.fullpage.switchingSection(fullpageSectionId);
+                            document.documentElement.classList.contains("menu-open") ? menuClose() : null;
                         }
                     }
                     e.preventDefault();
@@ -4175,5 +4386,7 @@
     window["FLS"] = false;
     isWebp();
     menuInit();
+    formFieldsInit({});
+    formSubmit();
     pageNavigation();
 })();

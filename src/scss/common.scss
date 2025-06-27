@@ -204,6 +204,10 @@ body {
   @include adaptiveValue("font-size", 26, 22,0,1440.98,480.98);
   font-weight: 700;
 }
+.title-24 {
+  @include adaptiveValue("font-size", 24, 22,0,1440.98,480.98);
+  font-weight: 700;
+}
 .mb-40-26 {
   @include adaptiveValue("margin-bottom", 40, 26,0,1440.98,480.98);
 }

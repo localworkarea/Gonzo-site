@@ -8,7 +8,7 @@
 	<link rel="preload" href="fonts/SofiaSans-Bold.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="preload" href="fonts/SofiaSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20250627113333">
+	<link rel="stylesheet" href="css/style.min.css?_v=20250627144844">
 	<link rel="shortcut icon" href="favicon.ico">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -243,8 +243,87 @@
 				</div>
 			</section>
 
-			<section data-fp-section class="contacts">
-				<div class="section-wrapper bg-orange"></div>
+			<section data-fp-section class="contacts bg-orange">
+				<div class="contacts__bg"></div>
+				<div class="contacts__container">
+					<h1 class="contacts__title title-46 mb-40-26">Контакти</h1>
+					<div class="contacts__content">
+						<form class="contacts__form form" data-dev action="" method="POST">
+							<div class="form__body">
+								<p class="form__title title-24">Залиште свої дані і ми зв’яжемося з вами:</p>
+								<div class="form__items">
+									<div class="form__item">
+										<input type="text" name="form[name]" placeholder="Ваше ім'я" class="input" required>
+									</div>
+									<div class="form__item">
+										<input type="tel" name="form[tel]" placeholder="Ваш телефон" class="input" required>
+									</div>
+									<div class="form__item">
+										<input type="email" name="form[email]" placeholder="Ваш e-mail" class="input">
+									</div>
+									<div class="form__item item-select">
+										<select class="form__select" name="form[select]">
+											<button>
+												<selectedcontent></selectedcontent>
+											</button>
+											<option value="">Ваш регіон</option>
+											<option value="Вінницька"><span class="option">Вінницька область</span></option>
+											<option value="Волинська">Волинська область</option>
+											<option value="Дніпропетровська">Дніпропетровська область</option>
+											<option value="Донецька">Донецька область</option>
+											<option value="Житомирська">Житомирська область</option>
+											<option value="Закарпатська">Закарпатська область</option>
+											<option value="Запорізька">Запорізька область</option>
+											<option value="Івано-Франківська">Івано-Франківська область</option>
+											<option value="Київська">Київська область</option>
+											<option value="КиївЛ">м.Київ (лівий берег)</option>
+											<option value="КиївП">м.Київ (правий берег)</option>
+											<option value="Кіровоградська">Кіровоградська область</option>
+											<option value="Луганська">Луганська область</option>
+											<option value="Львівська">Львівська область</option>
+											<option value="Миколаївська">Миколаївська область</option>
+											<option value="Одеська">Одеська область</option>
+											<option value="Полтавська">Полтавська область</option>
+											<option value="Рівненська">Рівненська область</option>
+											<option value="Сумська">Сумська область</option>
+											<option value="Тернопільська">Тернопільська область</option>
+											<option value="Харківська">Харківська область</option>
+											<option value="Херсонська">Херсонська область</option>
+											<option value="Хмельницька">Хмельницька область</option>
+											<option value="Черкаська">Черкаська область</option>
+											<option value="Чернівецька">Чернівецька область</option>
+											<option value="Чернігівська">Чернігівська область</option>
+										</select>
+									</div>
+									<div class="form__item">
+										<input type="file" name="form[email]" class="input">
+									</div>
+									<button type="submit" class="form__button">Надіслати</button>
+								</div>
+							</div>
+							<div class="form__msg">
+								<p>
+									Дякуємо!<br> Ми зв’яжемося з вами якнайшвидше!
+								</p>
+							</div>
+						</form>
+						<address class="contacts__contacts">
+							<p class="contacts__text">Національний дистриб’ютор:</p>
+							<a href="tel:+380674617572" class="contacts__tel" aria-label="phone number">+38 (067) 461 75 72</a>
+						</address>
+						<div class="contacts__social social">
+							<a href="#" class="social__link" aria-label="link to the social">
+								<img src="img/icons/ig.svg" width="50" height="50" alt="logo social">
+							</a>
+							<a href="#" class="social__link" aria-label="link to the social">
+								<img src="img/icons/yt.svg" width="50" height="50" alt="logo social">
+							</a>
+							<a href="#" class="social__link" aria-label="link to the social">
+								<img src="img/icons/tt.svg" width="50" height="50" alt="logo social">
+							</a>
+						</div>
+					</div>
+				</div>
 			</section>
 		</main>
 	</div>
@@ -438,7 +517,7 @@
 			preloader();
 		</script>
 	</div>
-	<script src="js/app.min.js?_v=20250627113333"></script>
+	<script src="js/app.min.js?_v=20250627144844"></script>
 </body>
 
 </html>

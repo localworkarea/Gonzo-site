@@ -456,17 +456,36 @@
   }
 }
 
+%paddingSections {
+  position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    
+    @media (min-width:toEm(820.98)) {
+      padding-top: toRem(84);
+      padding-bottom: toRem(150);
+    }
+
+    @media (max-width: toEm(820.98)) {
+      padding-top: toRem(160);
+    }
+
+    @media (max-width:$mobileSmall) {
+      padding-top: toRem(120);
+    }
+    
+    @media (max-height: toEm(480.98)) {
+      padding-top: toRem(50) !important;
+    }
+    @media (max-width: toEm(375.98)){
+      padding-top: toRem(90);
+    }
+}
+
 // ==== SECTIONS ================================
 .advantages {
-  // @extend %elImgCover;
-
-  // @media (orientation: landscape) {
-  //   background-image: url('@img/bgs/bg-orange-pc.jpg');
-  // }
-
-  // @media (orientation: portrait) {
-  //   background-image: url('@img/bgs/bg-orange-mb.jpg');
-  // }
 
   .section-wrapper {
     &:before {
@@ -503,7 +522,8 @@
   // .advantages__container
   &__container {
     // @extend %sectionCentered;
-    position: relative;
+    // @extend %paddingSections;
+      position: relative;
     z-index: 2;
     height: 100%;
     display: flex;
@@ -991,6 +1011,204 @@
 }
 
 // ==== SECTIONS ================================
+.contacts {
+  @media (min-width:$mobileSmall){
+    display: grid;
+    place-items: center;
+    overflow: hidden !important;
+  }
+  @media (max-width:$mobileSmall){
+     overflow-x: hidden !important; 
+    }
+    @media (max-height: toEm(480.98)){
+    overflow-y: auto !important; 
+  }
+  &:before {
+      content: '';
+      @extend %absoluteCenter;
+      @extend %elImgContain;
+      background-image: url('@img/elements/circle-blur-big.svg');
+      aspect-ratio: 1;
+      z-index: 0;
+      @include adaptiveValue("width", 2000, 1000, 0, 1440.98, 480.98);
+    }
+		// .contacts__bg
+		&__bg {
+        position: absolute;
+        pointer-events: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    @extend %elImgContain;
+
+    @media (orientation: landscape) {
+      background-image: url('@img/elements/elements-4-pc.png');
+    }
+
+    &::before {
+      @media (orientation: portrait) and (min-width:$mobileSmall){
+        content:'';
+        background-repeat: no-repeat;
+        background-size:contain;
+        position: absolute;
+        inset: 0;
+        background-image: url('@img/elements/elements-2-mb.png');
+        background-position: 0 toRem(140);
+      }
+  
+    }
+    &::after {
+      @media (orientation: portrait) and (min-width:$mobileSmall) {
+        content:'';
+        background-repeat: no-repeat;
+        background-size:contain;
+        position: absolute;
+        inset: 0;
+        background-image: url('@img/elements/elements-4-mb.png');
+        background-position: 0 97%;
+      }
+    }
+
+		}
+		
+		// .contacts__container
+		&__container {
+      // @extend %paddingSections;
+        position: relative;
+        z-index: 2;
+    // height: 100%;
+    display: flex;
+    flex-direction: column;
+    
+    @media (min-width:toEm(820.98)) {
+      padding-top: toRem(84);
+      padding-bottom: toRem(30);
+    }
+
+    @media (max-width: toEm(820.98)) {
+      padding-top: toRem(160);
+    }
+
+    @media (max-width:$mobileSmall) {
+      padding-top: toRem(120);
+      padding-bottom: toRem(130);
+    }
+    
+    @media (max-height: toEm(480.98)) {
+      padding-top: toRem(50) !important;
+    }
+    @media (max-width: toEm(375.98)){
+      padding-top: toRem(90);
+    }
+
+
+   &::before {
+     @media (max-width:$mobileSmall) {
+        pointer-events: none;
+        content:'';
+        background-repeat: no-repeat;
+        background-size:contain;
+        position: absolute;
+        inset: 0;
+        background-image: url('@img/elements/elements-2-mb.png');
+        background-position: 0 toRem(90);
+      }
+    }
+    &::after {
+      @media (max-width:$mobileSmall) {
+         pointer-events: none;
+        content:'';
+        background-repeat: no-repeat;
+        background-size:contain;
+        position: absolute;
+        inset: 0;
+        background-image: url('@img/elements/elements-4-mb.png');
+        background-position: 0 97%;
+      }
+    }
+
+    
+		}
+		// .contacts__title
+		&__title {
+      text-align: center;
+		}
+
+		// .contacts__content
+		&__content {
+      display: flex;
+      flex-direction: column;
+      gap: toRem(20);
+      flex: 1;
+      position: relative;
+      z-index: 2;
+		}
+
+		// .contacts__form
+		&__form {
+     
+		}
+
+		// .contacts__contacts
+		&__contacts {
+      flex: 1;
+      display: grid;
+          align-items: center;
+    align-content: center;
+    justify-content: center;
+      font-weight: 700;
+      line-height: 1.4;
+      text-align: center;
+      @media (min-width:$mobileSmall){
+        //  margin-bottom: toRem(38); 
+      }
+      @media (max-width:$mobileSmall){
+        //  margin-bottom: toRem(26); 
+      }
+		}
+    
+		// .contacts__text
+		&__text {
+      font-size: toRem(24);
+    }
+    
+		// .contacts__tel
+		&__tel {
+      font-size: toRem(34);
+    }
+    
+		// .contacts__social
+		&__social {
+      @extend %flexCenter;
+      justify-content: center;
+    }
+    
+  }
+  
+
+
+
+.social {
+  @extend %flexCenter;
+  gap: toRem(15);
+    // .social__link
+
+    &__link {
+      transition: transform .45s ease;
+      @extend %gridCenter;
+      @extend %shadowBox;
+      background-color: var(--white);
+      border-radius: 50%;
+      @media (any-hover: hover){
+        &:hover{
+          transform: translate(0,-10px);
+        }
+      }
+    }
+}
+
 // ==== SECTIONS ================================
 // ==== SECTIONS ================================
 // ==== SECTIONS ================================

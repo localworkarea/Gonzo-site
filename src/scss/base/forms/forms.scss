@@ -1,20 +1,182 @@
-//<FORM>
-// Сніппет (HTML):
-.form {
-	&__row {
+//<INPUT>
+// Сніппет (HTML): inp
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+.input {
+	border-radius: 0 !important;
+	width: 100%;
+	height: 100%;
+	display: block;
+	padding: 0px;
+	caret-color: inherit;
+	font-size: toRem(18);
+	outline: none;
+	color: var(--primary);
+	&._form-focus {
 	}
-	&__column {
-	}
-	&__line {
-	}
-	&__input {
-	}
-	&__button {
-	}
-	&__error {
+	&._form-error {
 	}
 }
-//</FORM>
+.input[placeholder]:not([data-placeholder-nohiden]) {
+	&::placeholder {
+		transition: opacity 0.3s;
+		color: var(--primary);
+	}
+	&:focus::placeholder {
+		opacity: 0;
+	}
+}
+
+// textarea.input {
+// 	resize: none;
+// 	padding: 0px 0px;
+// }
+
+  .form {
+		overflow: hidden;
+		position: relative;
+		font-size: toRem(18);
+		margin-inline: auto;
+		max-width: toRem(730);
+    box-shadow: 5px 5px 0 0 #231f20;
+    background-color: var(--white);
+    border-radius: toRem(40);
+
+		&._sending {
+			button {
+				pointer-events: none;
+				opacity: .5;
+			}
+		}
+
+    @media (min-width:$mobileSmall){
+      padding-inline: toRem(40); 
+      padding-block-start: toRem(40);
+      padding-block-end: toRem(50);
+    }
+    @media (max-width:$mobileSmall){
+			padding: toRem(20);
+    }
+
+		// .form__body
+		&__body {
+			position: relative;
+			z-index: 1;
+			transition: opacity .2s ease;
+			._form-sent & {
+				opacity: 0;
+				pointer-events: none;
+			}
+		}
+		// .form__title
+		&__title {
+      color: var(--primary);
+      text-align: center;
+      margin-bottom: toRem(20);
+		}
+
+		// .form__items
+		&__items {
+			display: grid;
+			gap: toRem(10);
+			@media (min-width:$mobileSmall){
+				grid-template-columns: 49% 49%;
+			}
+		}
+		// .form__item
+		&__item {
+			background-color: var(--gray);
+			border-radius: toRem(30);
+			min-height: toRem(60);
+			display: flex;
+			align-items: center;
+			padding-inline: toRem(23);
+			&.item-select {
+				// padding-left: toRem(0);
+				// padding-right: toRem(0);
+			}
+		}
+		
+		// .form__select
+		&__select {
+			// appearance: none; 
+			background-color: transparent;
+			font-size: toRem(18);
+			font-Family: "SofiaSans",sans-serif;
+			display: block;
+			width: 100%;
+			height: 100%;
+			outline: none;
+			
+			&::picker(select) {
+				appearance: base-select;
+			}
+			button {
+			}
+			option {
+				padding-block: 1rem;
+				&::checkmark {
+					display: none;
+				}
+				&:checked {
+					background-color: var(--gray);
+				}
+			}
+			.option {
+				padding: 10px;
+			}
+		}
+		
+		// .form__button
+		&__button {
+			@extend %gridCenter;
+			background: radial-gradient(50% 50% at 50% 50%, #6300ee 0%, #4900af 100%);
+			border-radius: toRem(30);
+			min-height: toRem(60);
+			transition: opacity .3s ease;
+			@media (any-hover: hover){
+				&:hover{
+					opacity: 0.8;
+				}
+			}
+		}
+		// .form__msg
+		&__msg {
+			background-color: var(--white);
+			pointer-events: none;
+			opacity: 0;
+			transition: opacity .2s ease;
+
+			@extend %gridCenter;
+			position: absolute;
+			z-index: 0;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			color: var(--primary);
+			@include adaptiveValue("font-size", 36, 26,0,1440.98,480.98);
+		  font-weight: 700;
+			text-align: center;
+			line-height: 1.2;
+			p {
+				max-width: 80%;
+			}
+
+			._form-sent & {
+				opacity: 1;
+				pointer-events: all;
+			}
+		}
+}
+
+
 
 // <BUTTONS>
 // Сніппет (HTML): btn

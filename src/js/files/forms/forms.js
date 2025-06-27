@@ -33,39 +33,39 @@ export function formFieldsInit(options = { viewPass: false, autoHeight: false })
 			targetElement.hasAttribute('data-validate') ? formValidate.validateInput(targetElement) : null;
 		}
 	});
-	// Якщо увімкнено, додаємо функціонал "Показати пароль"
-	if (options.viewPass) {
-		document.addEventListener("click", function (e) {
-			let targetElement = e.target;
-			if (targetElement.closest('[class*="__viewpass"]')) {
-				let inputType = targetElement.classList.contains('_viewpass-active') ? "password" : "text";
-				targetElement.parentElement.querySelector('input').setAttribute("type", inputType);
-				targetElement.classList.toggle('_viewpass-active');
-			}
-		});
-	}
-	// Якщо увімкнено, додаємо функціонал "Автовисота"
-	if (options.autoHeight) {
-		const textareas = document.querySelectorAll('textarea[data-autoheight]');
-		if (textareas.length) {
-			textareas.forEach(textarea => {
-				const startHeight = textarea.hasAttribute('data-autoheight-min') ?
-					Number(textarea.dataset.autoheightMin) : Number(textarea.offsetHeight);
-				const maxHeight = textarea.hasAttribute('data-autoheight-max') ?
-					Number(textarea.dataset.autoheightMax) : Infinity;
-				setHeight(textarea, Math.min(startHeight, maxHeight))
-				textarea.addEventListener('input', () => {
-					if (textarea.scrollHeight > startHeight) {
-						textarea.style.height = `auto`;
-						setHeight(textarea, Math.min(Math.max(textarea.scrollHeight, startHeight), maxHeight));
-					}
-				});
-			});
-			function setHeight(textarea, height) {
-				textarea.style.height = `${height}px`;
-			}
-		}
-	}
+	// // Якщо увімкнено, додаємо функціонал "Показати пароль"
+	// if (options.viewPass) {
+	// 	document.addEventListener("click", function (e) {
+	// 		let targetElement = e.target;
+	// 		if (targetElement.closest('[class*="__viewpass"]')) {
+	// 			let inputType = targetElement.classList.contains('_viewpass-active') ? "password" : "text";
+	// 			targetElement.parentElement.querySelector('input').setAttribute("type", inputType);
+	// 			targetElement.classList.toggle('_viewpass-active');
+	// 		}
+	// 	});
+	// }
+	// // Якщо увімкнено, додаємо функціонал "Автовисота"
+	// if (options.autoHeight) {
+	// 	const textareas = document.querySelectorAll('textarea[data-autoheight]');
+	// 	if (textareas.length) {
+	// 		textareas.forEach(textarea => {
+	// 			const startHeight = textarea.hasAttribute('data-autoheight-min') ?
+	// 				Number(textarea.dataset.autoheightMin) : Number(textarea.offsetHeight);
+	// 			const maxHeight = textarea.hasAttribute('data-autoheight-max') ?
+	// 				Number(textarea.dataset.autoheightMax) : Infinity;
+	// 			setHeight(textarea, Math.min(startHeight, maxHeight))
+	// 			textarea.addEventListener('input', () => {
+	// 				if (textarea.scrollHeight > startHeight) {
+	// 					textarea.style.height = `auto`;
+	// 					setHeight(textarea, Math.min(Math.max(textarea.scrollHeight, startHeight), maxHeight));
+	// 				}
+	// 			});
+	// 		});
+	// 		function setHeight(textarea, height) {
+	// 			textarea.style.height = `${height}px`;
+	// 		}
+	// 	}
+	// }
 }
 // Валідація форм
 export let formValidate = {
@@ -165,7 +165,12 @@ export let formValidate = {
 		return !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(formRequiredItem.value);
 	}
 }
-/* Відправлення форм */
+
+
+
+
+
+
 export function formSubmit() {
 	const forms = document.forms;
 	if (forms.length) {
@@ -215,31 +220,35 @@ export function formSubmit() {
 			}
 		}
 	}
-	// Дії після надсилання форми
 	function formSent(form, responseResult = ``) {
-		// Створюємо подію відправлення форми
 		document.dispatchEvent(new CustomEvent("formSent", {
 			detail: {
 				form: form
 			}
 		}));
-		// Показуємо попап, якщо підключено модуль попапів 
-		// та для форми вказано налаштування
+
+		document.documentElement.classList.add('_form-sent');
 		setTimeout(() => {
-			if (flsModules.popup) {
-				const popup = form.dataset.popupMessage;
-				popup ? flsModules.popup.open(popup) : null;
-			}
-		}, 0);
-		// Очищуємо форму
+			document.documentElement.classList.remove('_form-sent');
+		}, 6000);
+		
 		formValidate.formClean(form);
-		// Повідомляємо до консолі
-		formLogging(`Форму відправлено!`);
-	}
-	function formLogging(message) {
-		FLS(`[Форми]: ${message}`);
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Модуль форми "кількість" */
 export function formQuantity() {
 	document.addEventListener("click", function (e) {
