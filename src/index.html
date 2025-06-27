@@ -263,9 +263,8 @@
 									</div>
 									<div class="form__item item-select">
 										<select class="form__select" name="form[select]">
-											<!-- <button><selectedcontent></selectedcontent></button> -->
 											<option value="">Ваш регіон</option>
-											<option value="Вінницька"><span class="option">Вінницька область</span></option>
+											<option value="Вінницька">>Вінницька область</option>
 											<option value="Волинська">Волинська область</option>
 											<option value="Дніпропетровська">Дніпропетровська область</option>
 											<option value="Донецька">Донецька область</option>
@@ -317,14 +316,14 @@
 							<a href="tel:+380674617572" class="contacts__tel" aria-label="phone number">+38 (067) 461 75 72</a>
 						</address>
 						<div class="contacts__social social">
-							<a href="#" class="social__link" aria-label="link to the social">
-								<img src="@img/icons/ig.svg" width="50" height="50" alt="logo social">
+							<a href="https://www.instagram.com/gonzo.snacks?igsh=c2JocjdkZXJyazlt" target="_blank" class="social__link" aria-label="link to the social">
+								<img src="@img/icons/ig.svg" width="50" height="50" alt="logo instagram">
 							</a>
-							<a href="#" class="social__link" aria-label="link to the social">
-								<img src="@img/icons/yt.svg" width="50" height="50" alt="logo social">
+							<a href="https://youtube.com/@gonzosnacks6181?si=EtO7zLk1cuqG8Krn" target="_blank" class="social__link" aria-label="link to the social">
+								<img src="@img/icons/yt.svg" width="50" height="50" alt="logoyoutube">
 							</a>
-							<a href="#" class="social__link" aria-label="link to the social">
-								<img src="@img/icons/tt.svg" width="50" height="50" alt="logo social">
+							<a href="https://www.tiktok.com/@gonzo.snacks?_t=ZM-8xYUczD4v2L&_r=1" target="_blank" class="social__link" aria-label="link to the social">
+								<img src="@img/icons/tt.svg" width="50" height="50" alt="logo tiktok">
 							</a>
 						</div>
 					</div>
@@ -336,16 +335,13 @@
 		<script>
 			function preloader() {
 				const preloaderContainer = document.querySelector('#fls-preloader');
-				// Проверяем, есть ли элемент с атрибутом data-preloader
 				const hasCustomPreloader = document.querySelector('[data-preloader]');
 
 				let preloaderImages;
 
 				if (hasCustomPreloader) {
-					// Если есть кастомный контейнер, выбираем только изображения внутри него
 					preloaderImages = hasCustomPreloader.querySelectorAll('img');
 				} else {
-					// Иначе выбираем все изображения на странице
 					preloaderImages = document.querySelectorAll('img');
 				}
 				if (preloaderImages.length) {
