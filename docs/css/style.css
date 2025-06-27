@@ -303,6 +303,7 @@ body {
   background-size: contain
 }
 .icon-menu,
+.menu__lng,
 .sliders__button,
 .sliders__pagination.swiper-pagination .swiper-pagination-bullet {
   display: grid;
@@ -410,10 +411,20 @@ body {
   position: relative;
   color: var(--primary)
 }
+.menu__block {
+  display: flex;
+  align-items: center;
+  gap: .9375rem
+}
+.menu__lng {
+  font-size: 1.25rem;
+  font-weight: 700;
+  transition: color .3s ease
+}
 .menu__body {
   position: absolute;
   top: 0;
-  right: 4.375rem;
+  right: 4.0625rem;
   background-color: var(--white);
   opacity: 0
 }
@@ -426,9 +437,11 @@ body {
   gap: 1.5rem
 }
 .menu__link {
+  display: inline-block;
   font-size: 1.5rem;
   font-weight: 700;
-  transition: color .3s ease
+  transition: color .3s ease;
+  white-space: nowrap
 }
 .icon-menu__item {
   position: relative;
@@ -695,7 +708,7 @@ body {
   padding: .9375rem;
   border-radius: 1.25rem;
   background-color: var(--white);
-  transition: opacity .45s ease 1s
+  transition: opacity .45s ease 1s,color .3s ease
 }
 .tap-snack__btn._hidden {
   opacity: 0;
@@ -946,7 +959,7 @@ body {
 }
 @media (max-width:61.99875em) {
   .menu__body {
-    border-radius: 2.5rem
+    border-radius: 1.5625rem
   }
   .menu__list {
     padding-block: 1.5rem;
@@ -1078,7 +1091,9 @@ body {
   }
   .tap-snack__btn {
     top: -1.25rem;
-    left: 0
+    left: 50%;
+    -webkit-transform: translate(-50%,0);
+    transform: translate(-50%,0)
   }
   .tap-snack__block {
     min-width: 18.75rem;
@@ -1144,7 +1159,13 @@ body {
   .fp-bullets .fp-bullet:hover {
     opacity: 1
   }
+  .menu__lng:hover {
+    color: var(--purple)
+  }
   .menu__link:hover {
+    color: var(--purple)
+  }
+  .tap-snack__btn:hover {
     color: var(--purple)
   }
 }

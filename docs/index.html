@@ -8,7 +8,7 @@
 	<link rel="preload" href="fonts/SofiaSans-Bold.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="preload" href="fonts/SofiaSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20250627103401">
+	<link rel="stylesheet" href="css/style.min.css?_v=20250627110039">
 	<link rel="shortcut icon" href="favicon.ico">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -30,15 +30,18 @@
 					<img src="img/icons/logo.webp" width="133" height="50" alt="Image">
 				</a>
 				<div class="header__menu menu">
-					<button type="button" class="menu__icon icon-menu" aria-label="open menu">
-						<span class="icon-menu__item"><span></span></span>
-					</button>
+					<div class="menu__block">
+						<a href="#" class="menu__lng" aria-label="switch a language">Eng</a>
+						<button type="button" class="menu__icon icon-menu" aria-label="open menu">
+							<span class="icon-menu__item"><span></span></span>
+						</button>
+					</div>
 					<nav class="menu__body">
 						<ul class="menu__list">
 							<li class="menu__item"><a href="#" data-goto=".sliders" class="menu__link" aria-label="go to section">Асортимент</a></li>
 							<li class="menu__item"><a href="#" data-goto=".advantages" class="menu__link" aria-label="go to section">Переваги</a></li>
+							<li class="menu__item"><a href="#" data-goto=".snack" class="menu__link" aria-label="go to section">Твій снек</a></li>
 							<li class="menu__item"><a href="#" data-goto=".contacts" class="menu__link" aria-label="go to section">Контакти</a></li>
-							<li class="menu__item"><a href="#" class="menu__link" aria-label="link to a language page">Eng</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -193,7 +196,7 @@
 							<p class="snack__subtitle title-36">Просто клікай на снек коли захочеш</p>
 						</div>
 						<div class="snack__tap tap-snack _not-active">
-							<button type="button" class="tap-snack__btn _hidden" aria-label="почати гру заново">Клікнути снек ще раз</button>
+							<button type="button" class="tap-snack__btn _hidden" aria-label="почати гру заново">Злови ще раз</button>
 							<div class="tap-snack__body">
 								<div class="tap-snack__img tap-snack-01 _active">
 									<img src="img/snack/snack-1.webp" width="364" height="369" alt="Image">
@@ -435,7 +438,7 @@
 			preloader();
 		</script>
 	</div>
-	<script src="js/app.min.js?_v=20250627103401"></script>
+	<script src="js/app.min.js?_v=20250627110039"></script>
 </body>
 
 </html>
