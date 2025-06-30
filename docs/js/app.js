@@ -3860,16 +3860,19 @@
         });
     }
     function initSliders() {
-        if (document.querySelector(".sliders__slider")) {
-            const sliderEl = document.querySelector(".sliders__slider");
+        const sliderEl = document.querySelector(".sliders__slider");
+        if (sliderEl) {
             const sectionWrapper = sliderEl.closest(".section-wrapper");
+            let loadedSlideRemoved = false;
+            sectionWrapper.classList.add("loaded-slide");
             new Swiper(sliderEl, {
                 modules: [ Navigation, Pagination ],
-                observer: true,
-                observeParents: true,
                 slidesPerView: 1,
                 spaceBetween: 20,
                 speed: 400,
+                loop: true,
+                watchSlidesProgress: true,
+                watchSlidesVisibility: true,
                 pagination: {
                     el: sliderEl.querySelector(".swiper-pagination"),
                     clickable: true
@@ -3879,24 +3882,34 @@
                     nextEl: sliderEl.querySelector(".swiper-button-next")
                 },
                 on: {
-                    init(swiper) {
-                        updateSectionClass(swiper.activeIndex);
+                    init: function() {
+                        updateSlideBgClass(this.realIndex);
                     },
-                    slideChange(swiper) {
-                        updateSectionClass(swiper.activeIndex);
-                    }
+                    slideChange: function() {
+                        updateSlideBgClass(this.realIndex);
+                    },
+                    touchStart: removeLoadedClassOnce,
+                    sliderMove: removeLoadedClassOnce,
+                    navigationNext: removeLoadedClassOnce,
+                    navigationPrev: removeLoadedClassOnce
                 }
             });
-            function updateSectionClass(index) {
-                sectionWrapper.classList.forEach(className => {
-                    if (/^slide-active-\d+$/.test(className)) sectionWrapper.classList.remove(className);
+            function updateSlideBgClass(realIndex) {
+                sectionWrapper.classList.forEach(cls => {
+                    if (cls.startsWith("slide-active-")) sectionWrapper.classList.remove(cls);
                 });
-                const newClass = `slide-active-${String(index + 1).padStart(2, "0")}`;
-                sectionWrapper.classList.add(newClass);
+                const indexStr = String(realIndex).padStart(2, "0");
+                sectionWrapper.classList.add(`slide-active-${indexStr}`);
+            }
+            function removeLoadedClassOnce() {
+                if (!loadedSlideRemoved) {
+                    sectionWrapper.classList.remove("loaded-slide");
+                    loadedSlideRemoved = true;
+                }
             }
         }
     }
-    window.addEventListener("load", function(e) {
+    window.addEventListener("load", function() {
         initSliders();
     });
     class FullPage {

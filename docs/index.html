@@ -7,8 +7,7 @@
 	<meta name="format-detection" content="telephone=no">
 	<link rel="preload" href="fonts/SofiaSans-Bold.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="preload" href="fonts/SofiaSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
-	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20250627160938">
+	<link rel="stylesheet" href="css/style.min.css?_v=20250630141825">
 	<link rel="shortcut icon" href="favicon.ico">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -70,6 +69,13 @@
 												<img loading="lazy" class="slide-sliders__anim-img" src="img/elements/anim-1-pc.webp" width="1440" height="800" alt="image">
 											</picture>
 										</div>
+										<div class="slide-sliders__animations elements">
+											<picture>
+												<source srcset="img/elements/anim-1-1-mb.webp" media="(max-width: 30.061em)" type="image/webp">
+												<source srcset="img/elements/anim-1-1-pc.webp" type="image/webp">
+												<img loading="lazy" class="slide-sliders__anim-img" src="img/elements/anim-1-1-pc.webp" width="1440" height="800" alt="image">
+											</picture>
+										</div>
 									</div>
 								</div>
 								<div class="sliders__slide swiper-slide">
@@ -89,6 +95,13 @@
 												<img loading="lazy" class="slide-sliders__anim-img" src="img/elements/anim-2-pc.webp" width="1440" height="800" alt="image">
 											</picture>
 										</div>
+										<div class="slide-sliders__animations elements">
+											<picture>
+												<source srcset="img/elements/anim-2-2-mb.webp" media="(max-width: 30.061em)" type="image/webp">
+												<source srcset="img/elements/anim-2-2-pc.webp" type="image/webp">
+												<img loading="lazy" class="slide-sliders__anim-img" src="img/elements/anim-2-2-pc.webp" width="1440" height="800" alt="image">
+											</picture>
+										</div>
 									</div>
 								</div>
 								<div class="sliders__slide swiper-slide">
@@ -106,6 +119,13 @@
 												<source srcset="img/elements/anim-3-mb.webp" media="(max-width: 30.061em)" type="image/webp">
 												<source srcset="img/elements/anim-3-pc.webp" type="image/webp">
 												<img loading="lazy" class="slide-sliders__anim-img" src="img/elements/anim-3-pc.webp" width="1440" height="800" alt="image">
+											</picture>
+										</div>
+										<div class="slide-sliders__animations elements">
+											<picture>
+												<source srcset="img/elements/anim-3-3-mb.webp" media="(max-width: 30.061em)" type="image/webp">
+												<source srcset="img/elements/anim-3-3-pc.webp" type="image/webp">
+												<img loading="lazy" class="slide-sliders__anim-img" src="img/elements/anim-3-3-pc.webp" width="1440" height="800" alt="image">
 											</picture>
 										</div>
 									</div>
@@ -264,7 +284,7 @@
 									<div class="form__item item-select">
 										<select class="form__select" name="form[select]">
 											<option value="">Ваш регіон</option>
-											<option value="Вінницька">>Вінницька область</option>
+											<option value="Вінницька">Вінницька область</option>
 											<option value="Волинська">Волинська область</option>
 											<option value="Дніпропетровська">Дніпропетровська область</option>
 											<option value="Донецька">Донецька область</option>
@@ -272,9 +292,8 @@
 											<option value="Закарпатська">Закарпатська область</option>
 											<option value="Запорізька">Запорізька область</option>
 											<option value="Івано-Франківська">Івано-Франківська область</option>
-											<option value="Київська">Київська область</option>
-											<option value="КиївЛ">м.Київ (лівий берег)</option>
-											<option value="КиївП">м.Київ (правий берег)</option>
+											<option value="КиївЛ">Київ та область (лівий берег)</option>
+											<option value="КиївП">Київ та область (правий берег)</option>
 											<option value="Кіровоградська">Кіровоградська область</option>
 											<option value="Луганська">Луганська область</option>
 											<option value="Львівська">Львівська область</option>
@@ -335,16 +354,13 @@
 		<script>
 			function preloader() {
 				const preloaderContainer = document.querySelector('#fls-preloader');
-				// Проверяем, есть ли элемент с атрибутом data-preloader
 				const hasCustomPreloader = document.querySelector('[data-preloader]');
 
 				let preloaderImages;
 
 				if (hasCustomPreloader) {
-					// Если есть кастомный контейнер, выбираем только изображения внутри него
 					preloaderImages = hasCustomPreloader.querySelectorAll('img');
 				} else {
-					// Иначе выбираем все изображения на странице
 					preloaderImages = document.querySelectorAll('img');
 				}
 				if (preloaderImages.length) {
@@ -521,7 +537,7 @@
 			preloader();
 		</script>
 	</div>
-	<script src="js/app.min.js?_v=20250627160938"></script>
+	<script src="js/app.min.js?_v=20250630141825"></script>
 </body>
 
 </html>

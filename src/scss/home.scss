@@ -214,28 +214,28 @@
       @extend %elImgContain;
       background-image: url('@img/elements/circle-blur-big.svg');
       aspect-ratio: 1;
-      @include adaptiveValue("width", 2000, 1000, 0, 1440.98, 480.98);
+      @include adaptiveValue("width", 1500, 1000, 0, 1440.98, 480.98);
     }
 
     transition: background-color .5s ease;
 
-    &.slide-active-01 {
+    &.slide-active-00 {
       background-color: var(--purple);
     }
 
-    &.slide-active-02 {
+    &.slide-active-01 {
       background-color: var(--green);
     }
 
-    &.slide-active-03 {
+    &.slide-active-02 {
       background-color: var(--blue);
     }
 
-    &.slide-active-04 {
+    &.slide-active-03 {
       background-color: var(--gold);
     }
 
-    &.slide-active-05 {
+    &.slide-active-04 {
       background-color: var(--brown);
     }
   }
@@ -287,7 +287,9 @@
   }
 
   // .sliders__wrapper
-  &__wrapper {}
+  &__wrapper {
+    z-index: 1;
+  }
 
   // .sliders__slide
   &__slide {
@@ -303,7 +305,7 @@
   // .sliders__pagination
   &__pagination {
     position: absolute;
-    z-index: 2;
+    z-index: 5;
     left: 50%;
     transform: translate(-50%, 0);
     bottom: 0;
@@ -336,7 +338,7 @@
   // .sliders__button
   &__button {
     position: absolute;
-    z-index: 2;
+    z-index: 5;
     transition: opacity .3s ease;
 
     @media (orientation: landscape) {
@@ -388,7 +390,7 @@
 
 .slide-sliders {
   position: relative;
-
+  pointer-events: none;
 
   // border: 1px solid #000;
   @media (orientation: portrait) {
@@ -437,6 +439,9 @@
   &__animations {
     @extend %absoluteCenter;
     pointer-events: none;
+    &.elements {
+      z-index: 3;
+    }
   }
 
   // .slide-sliders__anim-img
@@ -452,6 +457,9 @@
       transition: transform .65s ease .55s, opacity .2s ease 0.55s;
       transform: scale(1);
       opacity: 1;
+    }
+    .loaded-slide.slide-active-00 & {
+      transition-delay: 2s;
     }
   }
 }
@@ -504,7 +512,11 @@
     position: absolute;
     inset: 0;
     z-index: 1;
-    @extend %elImg;
+    @extend %elImgContain;
+
+      @media (orientation: landscape) {
+      background-image: url('@img/elements/elements-2-pc.png');
+    }
 
     @media (orientation: portrait) {
       background-image: url('@img/elements/elements-2-mb.png');
