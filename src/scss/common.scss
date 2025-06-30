@@ -1,7 +1,13 @@
 body {
   background-color: var(--brown-dard);
   color: var(--white);
+
+//  color-scheme: light;
+//   image-rendering: auto;
+//   -webkit-font-smoothing: antialiased;
+
 }
+
 * {
   &::-webkit-scrollbar {
     width: 4px;
