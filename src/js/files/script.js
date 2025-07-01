@@ -179,7 +179,7 @@ document.addEventListener("focusin", async function (event) {
         await loadInputMask();
         inputmaskLoaded = true;
       } catch (e) {
-       console.error("Failed to load Inputmask:", e);
+        console.error("Failed to load Inputmask:", e);
         return;
       }
     }
@@ -190,22 +190,29 @@ document.addEventListener("focusin", async function (event) {
         const res = await fetch("https://ipapi.co/json/");
         if (!res.ok) throw new Error("Geolocation request failed");
         const data = await res.json();
-        userCountryCode = data.country || ""; // например "UA"
+        userCountryCode = data.country || ""; // e.g., "UA"
       } catch (e) {
-        console.warn("Could not detect the country, falling back to HTML language", e);
+        console.warn("Could not detect the country, will check HTML language instead", e);
+        userCountryCode = ""; // важно явно задать, чтобы не оставалось null
       }
     }
 
     // Маска по умолчанию
     let mask = "+99 999 999 99 99";
 
-    // Приоритет: страна -> язык HTML
     if (userCountryCode === "UA") {
+      // Если Украина — всегда украинская маска
       mask = "+38 (999) 999 99 99";
+    } else if (userCountryCode) {
+      // Если страна определена и это не Украина — всегда международная маска
+      mask = "+99 999 999 99 99";
     } else {
+      // Если страну определить не удалось — проверяем язык
       const lang = document.documentElement.lang;
       if (lang === "uk" || lang === "ru") {
         mask = "+38 (999) 999 99 99";
+      } else {
+        mask = "+99 999 999 99 99";
       }
     }
 
@@ -228,7 +235,6 @@ function loadInputMask() {
     document.head.appendChild(script);
   });
 }
-
 
 
 // =====================

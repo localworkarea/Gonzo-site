@@ -4436,12 +4436,13 @@
                 const data = await res.json();
                 userCountryCode = data.country || "";
             } catch (e) {
-                console.warn("Could not detect the country, falling back to HTML language", e);
+                console.warn("Could not detect the country, will check HTML language instead", e);
+                userCountryCode = "";
             }
             let mask = "+99 999 999 99 99";
-            if (userCountryCode === "UA") mask = "+38 (999) 999 99 99"; else {
+            if (userCountryCode === "UA") mask = "+38 (999) 999 99 99"; else if (userCountryCode) mask = "+99 999 999 99 99"; else {
                 const lang = document.documentElement.lang;
-                if (lang === "uk" || lang === "ru") mask = "+38 (999) 999 99 99";
+                if (lang === "uk" || lang === "ru") mask = "+38 (999) 999 99 99"; else mask = "+99 999 999 99 99";
             }
             Inputmask({
                 mask,
