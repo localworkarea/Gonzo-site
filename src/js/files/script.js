@@ -119,3 +119,116 @@ function resetGame() {
       });
     });
   }
+
+
+
+  // Загрузка плагина маски только при клике на поле =================
+// let inputmaskLoaded = false;
+
+// document.addEventListener("focusin", async function (event) {
+//   const input = event.target;
+
+//   if (input.hasAttribute("data-mask") && !input.dataset.masked) {
+//     if (!inputmaskLoaded) {
+//       try {
+//         await loadInputMask();
+//         inputmaskLoaded = true;
+//       } catch (e) {
+//         console.error("Не удалось загрузить Inputmask:", e);
+//         return;
+//       }
+//     }
+
+//     // Получаем язык документа
+//     const lang = document.documentElement.lang;
+
+//     // Выбираем маску в зависимости от языка
+//     const mask = (lang === "uk" || lang === "ru") 
+//       ? "+38 (999) 999 99 99"
+//       : "+99 999 999 99 99";
+
+//     Inputmask({
+//       mask: mask,
+//       showMaskOnHover: false,
+//       showMaskOnFocus: true
+//     }).mask(input);
+
+//     input.dataset.masked = "true";
+//   }
+// });
+
+// function loadInputMask() {
+//   return new Promise((resolve, reject) => {
+//     const script = document.createElement("script");
+//     script.src = "https://cdn.jsdelivr.net/npm/inputmask@5.0.9/dist/inputmask.min.js";
+//     script.onload = resolve;
+//     script.onerror = reject;
+//     document.head.appendChild(script);
+//   });
+// }
+
+let inputmaskLoaded = false;
+let userCountryCode = null;
+
+document.addEventListener("focusin", async function (event) {
+  const input = event.target;
+
+  if (input.hasAttribute("data-mask") && !input.dataset.masked) {
+    if (!inputmaskLoaded) {
+      try {
+        await loadInputMask();
+        inputmaskLoaded = true;
+      } catch (e) {
+       console.error("Failed to load Inputmask:", e);
+        return;
+      }
+    }
+
+    // Получаем код страны пользователя один раз
+    if (userCountryCode === null) {
+      try {
+        const res = await fetch("https://ipapi.co/json/");
+        if (!res.ok) throw new Error("Geolocation request failed");
+        const data = await res.json();
+        userCountryCode = data.country || ""; // например "UA"
+      } catch (e) {
+        console.warn("Could not detect the country, falling back to HTML language", e);
+      }
+    }
+
+    // Маска по умолчанию
+    let mask = "+99 999 999 99 99";
+
+    // Приоритет: страна -> язык HTML
+    if (userCountryCode === "UA") {
+      mask = "+38 (999) 999 99 99";
+    } else {
+      const lang = document.documentElement.lang;
+      if (lang === "uk" || lang === "ru") {
+        mask = "+38 (999) 999 99 99";
+      }
+    }
+
+    Inputmask({
+      mask: mask,
+      showMaskOnHover: false,
+      showMaskOnFocus: true
+    }).mask(input);
+
+    input.dataset.masked = "true";
+  }
+});
+
+function loadInputMask() {
+  return new Promise((resolve, reject) => {
+    const script = document.createElement("script");
+    script.src = "https://cdn.jsdelivr.net/npm/inputmask@5.0.9/dist/inputmask.min.js";
+    script.onload = resolve;
+    script.onerror = reject;
+    document.head.appendChild(script);
+  });
+}
+
+
+
+// =====================

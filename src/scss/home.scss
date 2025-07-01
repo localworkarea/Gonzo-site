@@ -280,6 +280,10 @@
     @media (orientation: portrait) {
       height: 100%;
     }
+    @media (max-width: 85.436em) and (orientation: portrait) and (min-width:$mobileSmall) {
+      max-width: 85%;
+      margin-inline: auto;
+    }
 
     @media (max-width:$mobileSmall) {
       //  margin-inline: toRem(-16);
@@ -452,6 +456,9 @@
     width: 115vw;
     height: auto;
     transform: scale(0);
+     @media (max-width: 85.436em) and (orientation: portrait) and (min-width:$mobileSmall) {
+       width: 100vw !important;
+    }
 
     .swiper-slide-active & {
       transition: transform .65s ease .55s, opacity .2s ease 0.55s;
@@ -858,6 +865,8 @@
 		&__btn {
       position: absolute;
       z-index: 10;
+      width: 100%;
+      max-width: max-content;
       font-size: toRem(18);
       font-weight: 700;
       color: var(--primary);
@@ -928,7 +937,13 @@
     position: absolute;
     z-index: 3;
     @extend %absoluteCenter;
+    width: 100%;
+    max-width: max-content;
     transition: opacity .3s ease;
+    @media (max-width:$mobileSmall){
+       transform-origin: center; 
+        transform: translate(-50%,-50%) scale(0.8);
+    }
     &._not-active {
       opacity: 0;
       pointer-events: none;

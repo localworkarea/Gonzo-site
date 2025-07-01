@@ -920,6 +920,9 @@ body {
 .tap-snack__btn {
   position: absolute;
   z-index: 10;
+  width: 100%;
+  max-width: -webkit-max-content;
+  max-width: max-content;
   font-size: 1.125rem;
   font-weight: 700;
   color: var(--primary);
@@ -964,6 +967,9 @@ body {
 .tap-snack__result {
   position: absolute;
   z-index: 3;
+  width: 100%;
+  max-width: -webkit-max-content;
+  max-width: max-content;
   transition: opacity .3s ease
 }
 .tap-snack__result._not-active {
@@ -1492,6 +1498,12 @@ body {
     -webkit-transform: translate(-50%,0);
     transform: translate(-50%,0)
   }
+  .tap-snack__result {
+    -webkit-transform-origin: center;
+    transform-origin: center;
+    -webkit-transform: translate(-50%,-50%) scale(.8);
+    transform: translate(-50%,-50%) scale(.8)
+  }
   .tap-snack__block {
     min-width: 18.75rem;
     border-radius: 2rem
@@ -1598,6 +1610,15 @@ body {
 @media (min-width:20em)and (max-width:30.06125em) {
   .file-input__txts .input-file-att {
     max-width: clamp(11.875rem ,-.0519474469rem + 59.6347372344vw ,17.875rem)
+  }
+}
+@media (max-width:85.436em)and (orientation:portrait)and (min-width:29.99875em) {
+  .sliders__slider {
+    max-width: 85%;
+    margin-inline: auto
+  }
+  .slide-sliders__anim-img {
+    width: 100vw!important
   }
 }
 @media (max-width:51.31125em)and (min-width:29.99875em) {
