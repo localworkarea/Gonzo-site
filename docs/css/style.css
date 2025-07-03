@@ -967,9 +967,6 @@ body {
 .tap-snack__result {
   position: absolute;
   z-index: 3;
-  width: 100%;
-  max-width: -webkit-max-content;
-  max-width: max-content;
   transition: opacity .3s ease
 }
 .tap-snack__result._not-active {
@@ -1012,8 +1009,10 @@ body {
   z-index: 1;
   text-align: center;
   background-color: var(--white);
-  width: 100%;
-  padding-inline: 1.25rem
+  padding-inline: 1rem;
+  padding-block: 1rem;
+  max-width: -webkit-max-content;
+  max-width: max-content
 }
 .tap-snack__title {
   color: var(--primary);
@@ -1022,7 +1021,8 @@ body {
 .tap-snack__results-txt {
   color: var(--purple);
   font-weight: 700;
-  display: none
+  display: none;
+  white-space: nowrap
 }
 .tap-snack__results-txt._active {
   display: block
@@ -1151,7 +1151,6 @@ body {
     top: 50%
   }
   .tap-snack__block {
-    min-width: 23.75rem;
     border-radius: 2.5rem
   }
   .contacts {
@@ -1304,11 +1303,8 @@ body {
   .snack__container:before {
     width: 93.75rem
   }
-  .tap-snack__block {
-    padding-block: 2.1875rem
-  }
   .tap-snack__results-txt {
-    font-size: 2.5rem
+    font-size: 1.875rem
   }
   .contacts:before {
     width: 125rem
@@ -1428,11 +1424,8 @@ body {
   .snack__container:before {
     width: 62.5rem
   }
-  .tap-snack__block {
-    padding-block: 1.75rem
-  }
   .tap-snack__results-txt {
-    font-size: 2rem
+    font-size: 1.75rem
   }
   .contacts:before {
     width: 62.5rem
@@ -1476,6 +1469,16 @@ body {
   .advantages__bg {
     background-position: 0 5.625rem!important
   }
+  .advantages__bg:after {
+    pointer-events: none;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    inset: 0;
+    background-image: url(../img/elements/elements-4-mb.webp);
+    background-position: 0 97%
+  }
   .advantages__container {
     padding-top: 7.5rem
   }
@@ -1505,7 +1508,6 @@ body {
     transform: translate(-50%,-50%) scale(.8)
   }
   .tap-snack__block {
-    min-width: 18.75rem;
     border-radius: 2rem
   }
   .contacts {
@@ -1597,11 +1599,8 @@ body {
   .snack__container:before {
     width: clamp(62.5rem ,46.8430989583rem + 52.0833333333vw ,93.75rem)
   }
-  .tap-snack__block {
-    padding-block: clamp(1.75rem ,1.5308033854rem + .7291666667vw ,2.1875rem)
-  }
   .tap-snack__results-txt {
-    font-size: clamp(2rem ,1.7494895833rem + .8333333333vw ,2.5rem)
+    font-size: clamp(1.75rem ,1.6873723958rem + .2083333333vw ,1.875rem)
   }
   .contacts:before {
     width: clamp(62.5rem ,31.1861979167rem + 104.1666666667vw ,125rem)

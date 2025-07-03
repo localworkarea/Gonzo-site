@@ -536,6 +536,19 @@
     @media (max-width:toEm(375.98)) {
       background-position: 0 toRem(70) !important;
     }
+
+    &:after {
+       @media (max-width:$mobileSmall) {
+         pointer-events: none;
+        content:'';
+        background-repeat: no-repeat;
+        background-size:contain;
+        position: absolute;
+        inset: 0;
+        background-image: url('@img/elements/elements-4-mb.png');
+        background-position: 0 97%;
+      }
+    }
   }
 
   // .advantages__container
@@ -937,8 +950,8 @@
     position: absolute;
     z-index: 3;
     @extend %absoluteCenter;
-    width: 100%;
-    max-width: max-content;
+    // width: 100%;
+    // max-width: max-content;
     transition: opacity .3s ease;
     @media (max-width:$mobileSmall){
        transform-origin: center; 
@@ -987,16 +1000,18 @@
     z-index: 1;
     text-align: center;
     background-color: var(--white);
-    width: 100%;
-    padding-inline: toRem(20);
-    @include adaptiveValue("padding-block", 35, 28,0,1440.98,480.98);
+    // width: 100%;
+    padding-inline: toRem(16);
+    padding-block: toRem(16);
+    max-width: max-content;
+    // @include adaptiveValue("padding-block", 20, 16,0,1440.98,480.98);
     @extend %shadowBox;
     @media (min-width:$mobileSmall){
-      min-width: toRem(380);
+      // min-width: toRem(380);
       border-radius: toRem(40); 
     }
     @media (max-width:$mobileSmall){
-      min-width: toRem(300);
+      // min-width: toRem(300);
       border-radius: toRem(32); 
     }
   }
@@ -1010,9 +1025,10 @@
   // .tap-snack__results-txt
   &__results-txt {
     color: var(--purple);
-      @include adaptiveValue("font-size", 40, 32,0,1440.98,480.98);
+      @include adaptiveValue("font-size", 30, 28,0,1440.98,480.98);
     font-weight: 700;
     display: none;
+    white-space: nowrap;
     &._active {
       display: block;
     }
