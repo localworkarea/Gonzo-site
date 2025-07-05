@@ -844,7 +844,7 @@ body {
   opacity: 1
 }
 .loaded-slide.slide-active-00 .slide-sliders__anim-img {
-  transition-delay: 2s
+  transition-delay: 3.3s
 }
 .advantages .section-wrapper:before {
   content: "";
