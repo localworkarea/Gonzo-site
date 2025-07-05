@@ -88,6 +88,19 @@ function resetGame() {
   if (tapSnack) {
     observer.observe(tapSnack);
   }
+
+
+
+
+
+
+   const contacts = document.querySelector(".contacts");
+  if (contacts) {
+    const inner = contacts.querySelector(".contacts__container");
+    const height = inner.offsetHeight;
+    contacts.style.setProperty("--height", `${height}px`);
+  }
+
 });
 
 

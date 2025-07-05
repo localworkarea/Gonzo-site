@@ -4395,6 +4395,12 @@
             threshold: .5
         });
         if (tapSnack) observer.observe(tapSnack);
+        const contacts = document.querySelector(".contacts");
+        if (contacts) {
+            const inner = contacts.querySelector(".contacts__container");
+            const height = inner.offsetHeight;
+            contacts.style.setProperty("--height", `${height}px`);
+        }
     });
     const fileInputs = document.querySelectorAll(".input-file");
     if (fileInputs) fileInputs.forEach(input => {

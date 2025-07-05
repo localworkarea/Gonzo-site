@@ -7,7 +7,7 @@
 	<meta name="format-detection" content="telephone=no">
 	<link rel="preload" href="fonts/SofiaSans-Bold.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="preload" href="fonts/SofiaSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
-	<link rel="stylesheet" href="css/style.min.css?_v=20250703121521">
+	<link rel="stylesheet" href="css/style.min.css?_v=20250705154327">
 	<link rel="shortcut icon" href="favicon.ico">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -191,17 +191,17 @@
 							<div class="advantages__slider">
 								<ul class="advantages__list">
 									<li class="advantages__item ">
-										<div class="advantages__block bg-purple-2">
+										<div class="advantages__block block-1 bg-purple-2">
 											<p>Легка<br> та хрустка<br> структура</p>
 										</div>
 									</li>
 									<li class="advantages__item ">
-										<div class="advantages__block bg-blue-2">
+										<div class="advantages__block block-2 bg-blue-2">
 											<p>Наповнені<br> спеціями<br> зсередини</p>
 										</div>
 									</li>
 									<li class="advantages__item ">
-										<div class="advantages__block bg-green-2">
+										<div class="advantages__block block-3 bg-green-2">
 											<p>Не<br> обсмажуються<br> в олії</p>
 										</div>
 									</li>
@@ -270,6 +270,7 @@
 
 			<section data-fp-section class="contacts bg-orange">
 				<div class="contacts__bg"></div>
+				<div class="contacts__fill"></div>
 				<div class="contacts__container">
 					<h1 class="contacts__title title-46 mb-40-26">Контакти</h1>
 					<div class="contacts__content">
@@ -377,6 +378,12 @@
 						border: 0px;
 						box-sizing: border-box;
 					}
+					.wrapper {
+						position: relative;
+						z-index: 1;
+						opacity: 0;
+						transition: opacity .8s ease;
+					}
 					.fls-preloader{
 						pointer-events: none;
 						z-index: 22;
@@ -386,7 +393,7 @@
 						justify-content:center;
 						align-items: center;
 						background-color: #231F20;
-						transition: opacity 0.85s ease 0s, visibility 0.85s ease 0s;
+						transition: opacity 1.2s  0s, visibility 1.2s  0s;
 					}
 					.fls-preloader__body{
 						max-width: 33vw;
@@ -444,6 +451,9 @@
 						
 						transform: scale(1.4);
 					}
+					.loaded .wrapper {
+						opacity: 1;
+					}
 					@media (max-width: 30.061em) {
 						.fls-preloader__body{
 							max-width: 69vw;
@@ -487,7 +497,12 @@
 						showLineLoad = document.querySelector('.fls-preloader__line span'),
 						htmlDocument = document.documentElement;
 
-					let imagesLoadedCount = counter = progress = 0;
+					// Засекаем момент вставки
+					const preloaderShownTime = Date.now();
+
+					let imagesLoadedCount = 0;
+					let counter = 0;
+					let progress = 0;
 
 					htmlDocument.classList.add('loading');
 					htmlDocument.classList.add('lock');
@@ -497,13 +512,14 @@
 						if (imgClone) {
 							imgClone.onload = imageLoaded;
 							imgClone.onerror = imageLoaded;
-							preloaderImage.dataset.src ? imgClone.src = preloaderImage.dataset.src : imgClone.src = preloaderImage.src;
+							imgClone.src = preloaderImage.dataset.src || preloaderImage.src;
 						}
 					});
 
-					function setValueProgress(progress) {
-						showLineLoad ? showLineLoad.style.width = `${progress}%` : null;
+					function setValueProgress(value) {
+						if (showLineLoad) showLineLoad.style.width = `${value}%`;
 					}
+
 
 					function imageLoaded() {
 						imagesLoadedCount++;
@@ -518,31 +534,35 @@
 							setValueProgress(counter);
 
 							if (counter >= 100) {
+								const elapsed = Date.now() - preloaderShownTime;
+								const minDisplayTime = 1500;
+								const remainingTime = Math.max(0, minDisplayTime - elapsed);
+
 								setTimeout(() => {
 									addLoadedClass();
-								}, 0);
+								}, remainingTime);
 							}
 						}, 10);
 					}
+
 
 
 					function addLoadedClass() {
 						htmlDocument.classList.remove('lock');
 						htmlDocument.classList.remove('loading');
 						htmlDocument.classList.add('loaded');
-						setInterval(() => {
+
+						setTimeout(() => {
 							preloader.remove();
 							preloaderContainer.remove();
-						}, 500);
+						}, 1000);
 					}
-				} else {
-					preloaderContainer.remove();
 				}
 			}
 			preloader();
 		</script>
 	</div>
-	<script src="js/app.min.js?_v=20250703121521"></script>
+	<script src="js/app.min.js?_v=20250705154327"></script>
 </body>
 
 </html>

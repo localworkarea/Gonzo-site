@@ -473,7 +473,7 @@ body {
 .advantages .section-wrapper:before,
 .advantages__block:before,
 .circle,
-.contacts:before,
+.contacts__fill:before,
 .preloader-main__el,
 .preloader-main__logo,
 .slide-sliders__animations,
@@ -508,8 +508,8 @@ body {
 .advantages__block:before,
 .advantages__item::after,
 .advantages__item::before,
-.contacts:before,
 .contacts__bg,
+.contacts__fill:before,
 .sliders .section-wrapper:before,
 .sliders__button::before,
 .snack__bg,
@@ -1027,19 +1027,32 @@ body {
 .tap-snack__results-txt._active {
   display: block
 }
-.contacts:before {
-  content: "";
-  background-image: url(../img/elements/circle-blur-big.svg);
-  aspect-ratio: 1;
-  z-index: 0
-}
-.contacts__bg {
+.contacts__fill {
+  overflow: hidden;
   position: absolute;
   pointer-events: none;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  min-height: var(--height);
+  z-index: 0
+}
+.contacts__fill:before {
+  content: "";
+  background-image: url(../img/elements/circle-blur-big.svg);
+  aspect-ratio: 1;
+  z-index: 0
+}
+.contacts__bg {
+  overflow: hidden;
+  position: absolute;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  min-height: var(--height);
   z-index: 1
 }
 .contacts__container {
@@ -1168,6 +1181,7 @@ body {
     background-repeat: no-repeat;
     background-size: contain;
     position: absolute;
+    z-index: 2;
     inset: 0;
     background-image: url(../img/elements/elements-2-mb.webp);
     background-position: 0 8.75rem
@@ -1178,6 +1192,7 @@ body {
     background-size: contain;
     position: absolute;
     inset: 0;
+    z-index: 2;
     background-image: url(../img/elements/elements-4-mb.webp);
     background-position: 0 97%
   }
@@ -1306,7 +1321,7 @@ body {
   .tap-snack__results-txt {
     font-size: 1.875rem
   }
-  .contacts:before {
+  .contacts__fill:before {
     width: 125rem
   }
 }
@@ -1427,7 +1442,7 @@ body {
   .tap-snack__results-txt {
     font-size: 1.75rem
   }
-  .contacts:before {
+  .contacts__fill:before {
     width: 62.5rem
   }
 }
@@ -1482,6 +1497,9 @@ body {
   .advantages__container {
     padding-top: 7.5rem
   }
+  .advantages__block.block-3 p br {
+    display: block!important
+  }
   .advantages__block p br {
     display: none
   }
@@ -1509,9 +1527,6 @@ body {
   }
   .tap-snack__block {
     border-radius: 2rem
-  }
-  .contacts {
-    overflow-x: hidden!important
   }
   .contacts__container {
     padding-top: 7.5rem;
@@ -1602,7 +1617,7 @@ body {
   .tap-snack__results-txt {
     font-size: clamp(1.75rem ,1.6873723958rem + .2083333333vw ,1.875rem)
   }
-  .contacts:before {
+  .contacts__fill:before {
     width: clamp(62.5rem ,31.1861979167rem + 104.1666666667vw ,125rem)
   }
 }
@@ -1618,6 +1633,12 @@ body {
   }
   .slide-sliders__anim-img {
     width: 100vw!important
+  }
+}
+@media (orientation:landscape)and (max-width:100.06125em)and (min-width:85.43625em) {
+  .advantages__bg {
+    background-size: cover;
+    background-position: center top
   }
 }
 @media (max-width:51.31125em)and (min-width:29.99875em) {
@@ -1741,9 +1762,6 @@ body {
   .tap-snack {
     scale: .7
   }
-  .contacts {
-    overflow-y: auto!important
-  }
   .contacts__container {
     padding-top: 3.125rem!important
   }
@@ -1751,5 +1769,11 @@ body {
 @media (any-hover:none) {
   .icon-menu__item {
     cursor: default
+  }
+}
+@media (max-height:46.93625em) {
+  .contacts {
+    overflow-x: hidden!important;
+    overflow-y: auto!important
   }
 }

@@ -522,7 +522,11 @@
     @extend %elImgContain;
 
       @media (orientation: landscape) {
-      background-image: url('@img/elements/elements-2-pc.png');
+        background-image: url('@img/elements/elements-2-pc.png');
+      }
+      @media (orientation: landscape)  and (max-width: toEm(1600.98)) and (min-width:toEm(1366.98)) {
+      background-size: cover;
+      background-position: center top;
     }
 
     @media (orientation: portrait) {
@@ -718,11 +722,26 @@
     @media (max-height: toEm(480.98)) {
       border-radius: toRem(8) !important;
     }
+    &.block-1 {
+
+    }
+    &.block-2 {
+
+    }
+    &.block-3 {
+      p {
+        br {
+          @media (max-width:$mobileSmall){
+             display: block !important; 
+          }
+        }
+      }
+    }
     p {
       @extend %shadowText;
       br {
         @media (max-width:$mobileSmall){
-           display: none; 
+         display: none; 
         }
       }
       @media (max-width:$mobileSmall){
@@ -1060,29 +1079,54 @@
     place-items: center;
     overflow: hidden !important;
   }
-  @media (max-width:$mobileSmall){
-     overflow-x: hidden !important; 
-    }
-    @media (max-height: toEm(480.98)){
+  // @media (max-width:$mobileSmall){
+  //    overflow-x: hidden !important; 
+  //   }
+    @media (max-height: toEm(750.98)){
+      overflow-x: hidden !important; 
     overflow-y: auto !important; 
   }
-  &:before {
-      content: '';
-      @extend %absoluteCenter;
-      @extend %elImgContain;
-      background-image: url('@img/elements/circle-blur-big.svg');
-      aspect-ratio: 1;
-      z-index: 0;
-      @include adaptiveValue("width", 2000, 1000, 0, 1440.98, 480.98);
-    }
-		// .contacts__bg
-		&__bg {
-        position: absolute;
-        pointer-events: none;
+  // &:before {
+  //     content: '';
+  //     @extend %absoluteCenter;
+  //     @extend %elImgContain;
+  //     background-image: url('@img/elements/circle-blur-big.svg');
+  //     aspect-ratio: 1;
+  //     z-index: 0;
+  //     @include adaptiveValue("width", 2000, 1000, 0, 1440.98, 480.98);
+  //   }
+  
+  // .contacts__fill
+  &__fill {
+    overflow: hidden;
+    position: absolute;
+    pointer-events: none;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    min-height: var(--height);
+    z-index: 0;
+    &:before {
+        content: '';
+        @extend %absoluteCenter;
+        @extend %elImgContain;
+        background-image: url('@img/elements/circle-blur-big.svg');
+        aspect-ratio: 1;
+        z-index: 0;
+        @include adaptiveValue("width", 2000, 1000, 0, 1440.98, 480.98);
+      }
+		}
+  // .contacts__bg
+  &__bg {
+    overflow: hidden;
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    min-height: var(--height);
     z-index: 1;
     @extend %elImgContain;
 
@@ -1096,6 +1140,7 @@
         background-repeat: no-repeat;
         background-size:contain;
         position: absolute;
+        z-index: 2;
         inset: 0;
         background-image: url('@img/elements/elements-2-mb.png');
         background-position: 0 toRem(140);
@@ -1109,6 +1154,7 @@
         background-size:contain;
         position: absolute;
         inset: 0;
+        z-index: 2;
         background-image: url('@img/elements/elements-4-mb.png');
         background-position: 0 97%;
       }
