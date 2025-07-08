@@ -466,7 +466,7 @@
       opacity: 1;
     }
     .loaded-slide.slide-active-00 & {
-      transition-delay: 3.3s;
+      transition-delay: 3.5s;
     }
   }
 }
@@ -801,12 +801,31 @@
     position: absolute;
     inset: 0;
     z-index: 1;
-    @extend %elImgContain;
+    // @extend %elImgContain;
+    @extend %elImgCover;
     @media (orientation: landscape) {
       background-image: url('@img/elements/elements-3-pc.png');
     }
-    @media (orientation: portrait) {    
+    @media (orientation: portrait) {   
+      
+      background-size: contain;
       background-image: url('@img/elements/elements-3-mb.png');
+    }
+    @media (max-width:$mobileSmall){
+      background-size: 108% auto !important; 
+      background-position: 50% toRem(40);
+    }
+    @media (max-width: toEm(420.98)){
+      background-size: 100% auto !important; 
+      background-position: 50% toRem(20);
+    }
+      @media (max-width: toEm(390.98)) and (min-height:toEm(800.98)) {
+      background-position: 50% toRem(60) !important;
+      }
+    @media (max-width: toEm(375.98)){
+      
+      background-position: 50% toRem(10);
+      background-size: 115% auto; 
     }
   }
   
@@ -852,6 +871,9 @@
   @media (max-height:toEm(480.98)){
     grid-template-columns: auto auto !important;
   }
+  @media (max-width: toEm(375.98)){
+    gap: toRem(60);
+  }
 }
 
 // .snack__content
@@ -866,7 +888,12 @@
 }
 
 // .snack__title
-&__title {}
+&__title {
+  @media (max-width: toEm(375.98)){
+      font-size: toRem(30) !important;
+      padding-top: toRem(30);
+  }
+}
 
 // .snack__subtitle
 &__subtitle {
@@ -876,6 +903,10 @@
   @media (max-width: toEm(820.98)){
       margin-inline: auto;
       max-width: toRem(340);
+  }
+   @media (max-width: toEm(375.98)){
+      font-size: toRem(20) !important;
+      max-width: 90%;
   }
 }
 
@@ -1223,6 +1254,9 @@
 		// .contacts__title
 		&__title {
       text-align: center;
+      @media (min-width:toEm(480.98)) and (max-height:toEm(680.98)) {
+        margin-bottom: toRem(25) !important;
+      }
 		}
 
 		// .contacts__content
@@ -1266,6 +1300,9 @@
 		// .contacts__tel
 		&__tel {
       font-size: toRem(34);
+      @media (min-width:toEm(480.98)) and (max-height:toEm(680.98)) {
+        font-size: toRem(30) !important;
+      }
     }
     
 		// .contacts__social

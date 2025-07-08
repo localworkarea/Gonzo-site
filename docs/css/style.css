@@ -519,12 +519,16 @@ body {
 .contacts__fill:before,
 .sliders .section-wrapper:before,
 .sliders__button::before,
-.snack__bg,
 .snack__container:before,
 .tap-snack__bg {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain
+}
+.snack__bg {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover
 }
 .icon-menu,
 .menu__lng,
@@ -844,7 +848,7 @@ body {
   opacity: 1
 }
 .loaded-slide.slide-active-00 .slide-sliders__anim-img {
-  transition-delay: 3.3s
+  transition-delay: 3.5s
 }
 .advantages .section-wrapper:before {
   content: "";
@@ -1179,6 +1183,11 @@ body {
     overflow: hidden!important
   }
 }
+@media (min-width:29.99875em)and (max-height:42.56125em) {
+  .form {
+    padding-block: 1.5625rem!important
+  }
+}
 @media (orientation:portrait)and (min-width:29.99875em) {
   .sliders__container {
     height: 100%
@@ -1202,6 +1211,14 @@ body {
     z-index: 2;
     background-image: url(../img/elements/elements-4-mb.webp);
     background-position: 0 97%
+  }
+}
+@media (min-width:30.06125em)and (max-height:42.56125em) {
+  .contacts__title {
+    margin-bottom: 1.5625rem!important
+  }
+  .contacts__tel {
+    font-size: 1.875rem!important
   }
 }
 @media (min-width:43.81125em) {
@@ -1516,6 +1533,10 @@ body {
   .advantages__block {
     font-size: 1.5rem
   }
+  .snack__bg {
+    background-size: 108% auto!important;
+    background-position: 50% 2.5rem
+  }
   .tap-snack {
     max-width: 80%;
     margin-inline: auto
@@ -1560,6 +1581,17 @@ body {
     background-position: 0 97%
   }
 }
+@media (max-width:26.31125em) {
+  .snack__bg {
+    background-size: 100% auto!important;
+    background-position: 50% 1.25rem
+  }
+}
+@media (max-width:24.43625em)and (min-height:50.06125em) {
+  .snack__bg {
+    background-position: 50% 3.75rem!important
+  }
+}
 @media (max-width:23.49875em) {
   .header {
     top: .9375rem
@@ -1579,6 +1611,21 @@ body {
   }
   .advantages__block p {
     max-width: 100%
+  }
+  .snack__bg {
+    background-position: 50% .625rem;
+    background-size: 115% auto
+  }
+  .snack__container {
+    gap: 3.75rem
+  }
+  .snack__title {
+    font-size: 1.875rem!important;
+    padding-top: 1.875rem
+  }
+  .snack__subtitle {
+    font-size: 1.25rem!important;
+    max-width: 90%
   }
   .contacts__container {
     padding-top: 5.625rem
@@ -1727,6 +1774,7 @@ body {
     background-position: 0 8.75rem
   }
   .snack__bg {
+    background-size: contain;
     background-image: url(../img/elements/elements-3-mb.webp)
   }
 }

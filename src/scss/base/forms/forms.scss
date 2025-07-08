@@ -61,6 +61,10 @@ textarea {
       padding-block-start: toRem(40);
       padding-block-end: toRem(50);
     }
+		@media (min-width:$mobileSmall) and (max-height: toEm(680.98)) {
+			padding-block: toRem(25) !important; 
+			
+		}
     @media (max-width:$mobileSmall){
 			padding: toRem(20);
     }
