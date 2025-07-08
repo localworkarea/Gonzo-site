@@ -794,7 +794,24 @@
   .section-wrapper {
     display: flex;
     align-items: center;
-
+    @extend %elImgContain;
+      @media (orientation: portrait) {  
+         background-size: 80% auto; 
+        background-position: 50% bottom; 
+        background-image: url('@img/elements/elements-3-2-mb.png');
+      }
+      @media (max-width:$mobileSmall){
+        background-size: 110% auto; 
+        background-position: right 106%; 
+      @media (max-width: toEm(430.98)) and (min-height:toEm(800.98)) {
+        background-size: 100% auto; 
+        background-position: 50% 100% !important;
+      }
+      @media (max-width: toEm(375.98)){
+        background-size: 118% auto; 
+        background-position: right 110% !important;
+      }
+    }
   }
   // .snack__bg
   &__bg {
@@ -1289,6 +1306,7 @@
       }
       @media (max-width:$mobileSmall){
         //  margin-bottom: toRem(26); 
+        margin-top: toRem(40);
       }
 		}
     

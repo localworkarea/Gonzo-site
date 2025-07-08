@@ -519,6 +519,7 @@ body {
 .contacts__fill:before,
 .sliders .section-wrapper:before,
 .sliders__button::before,
+.snack .section-wrapper,
 .snack__container:before,
 .tap-snack__bg {
   background-repeat: no-repeat;
@@ -1533,6 +1534,10 @@ body {
   .advantages__block {
     font-size: 1.5rem
   }
+  .snack .section-wrapper {
+    background-size: 110% auto;
+    background-position: right 106%
+  }
   .snack__bg {
     background-size: 108% auto!important;
     background-position: 50% 2.5rem
@@ -1579,6 +1584,21 @@ body {
     inset: 0;
     background-image: url(../img/elements/elements-4-mb.webp);
     background-position: 0 97%
+  }
+  .contacts__contacts {
+    margin-top: 2.5rem
+  }
+}
+@media (max-width:29.99875em)and (max-width:26.93625em)and (min-height:50.06125em) {
+  .snack .section-wrapper {
+    background-size: 100% auto;
+    background-position: 50% 100%!important
+  }
+}
+@media (max-width:29.99875em)and (max-width:23.49875em) {
+  .snack .section-wrapper {
+    background-size: 118% auto;
+    background-position: right 110%!important
   }
 }
 @media (max-width:26.31125em) {
@@ -1772,6 +1792,11 @@ body {
   .advantages__bg {
     background-image: url(../img/elements/elements-2-mb.webp);
     background-position: 0 8.75rem
+  }
+  .snack .section-wrapper {
+    background-size: 80% auto;
+    background-position: 50% bottom;
+    background-image: url(../img/elements/elements-3-2-mb.webp)
   }
   .snack__bg {
     background-size: contain;
